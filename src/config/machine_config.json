@@ -4,7 +4,7 @@
             "machine_id": 0,
             "display_name": "qubit",
             "source_config": {
-                "local_directory": "\\tests\\test-qubit-data",
+                "local_directory": "tests\\test-qubit-data",
                 "file_pattern": "*.csv",
                 "polling_interval_sec": 60
             },

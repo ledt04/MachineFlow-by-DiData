@@ -17,7 +17,7 @@ class Handler(FileSystemEventHandler):
     def on_moved(self, event):
         print(f"File moved: {event.src_path} -> {event.dest_path}")
 
-def watch_directory():
+def watch_qubit():
     observer = Observer()
     handler = Handler()
 

@@ -1,5 +1,6 @@
 import os
 import json
+from pathlib import Path
 
 DEBUG = True
 API_BASE_URL = "http://immvmdidata02.d.immlan.unizh.ch/test"
@@ -13,10 +14,12 @@ def load_machine_config():
 MACHINE_CONFIG = load_machine_config()
 
 def get_local_directory(machine_id):
+    project_root = Path(__file__).resolve().parents[1]
+
     for machine in MACHINE_CONFIG["machines"]:
         if machine["machine_id"] == machine_id:
             qubit_directory = machine["source_config"]["local_directory"]
-            full_directory = os.path.abspath(qubit_directory)
+            full_directory = os.path.join(project_root, qubit_directory)
             return full_directory
     return None
 
