@@ -5,8 +5,7 @@
             "display_name": "qubit",
             "source_config": {
                 "local_directory": "tests\\test-qubit-data",
-                "file_pattern": "*.csv",
-                "polling_interval_sec": 60
+                "file_pattern": "*.csv"
             },
             "api_config": {
                 "dna": "",
@@ -18,9 +17,8 @@
             "machine_id": 1,
             "display_name": "fragmentanalyzer",
             "source_config": {
-                "local_directory": "",
-                "file_pattern": "*.csv",
-                "polling_interval_sec": 60
+                "local_directory": "tests\\test-fragmentanalyzer-data",
+                "file_pattern": "*.csv"
             },
             "api_config": {
                 "pcr": "",

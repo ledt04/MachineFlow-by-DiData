@@ -14,7 +14,7 @@ def load_machine_config():
 MACHINE_CONFIG = load_machine_config()
 
 def get_local_directory(machine_id):
-    project_root = Path(__file__).resolve().parents[1]
+    project_root = Path(__file__).resolve().parents[2]
 
     for machine in MACHINE_CONFIG["machines"]:
         if machine["machine_id"] == machine_id:
@@ -26,5 +26,11 @@ def get_local_directory(machine_id):
 def get_qubit_id():
     for machine in MACHINE_CONFIG["machines"]:
         if machine["display_name"] == "qubit":
+            return machine["machine_id"]
+    return None
+
+def get_fragmentanalyzer_id():
+    for machine in MACHINE_CONFIG["machines"]:
+        if machine["display_name"] == "fragmentanalyzer":
             return machine["machine_id"]
     return None
