@@ -14,9 +14,9 @@ def login():
         "password": os.getenv("PASSWORD")
     })
     handle_login_responses(response)
-    
     token = response.json().get("token")
-    project_id = get_project_id(session, os.getenv("PROJECT"))
+    set_auth(token)
+    project_id = str(get_project_id(session, os.getenv("PROJECT")))
     set_auth(token, project_id)
     return session
 

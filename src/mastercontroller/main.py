@@ -18,6 +18,12 @@ def main():
     qubit_observer = watch_qubit(qubit_handler)
     fragment_observer = watch_fragmentanalyzer(fragment_handler)
     
+    # Debug
+    session = login()
+    qubit_main(session)
+    logout(session)
+    
+    '''
     try:
         while True:
             if qubit_handler.file_created:
@@ -38,6 +44,7 @@ def main():
     finally:
         stop_watch_qubit(qubit_observer)
         stop_watch_fragmentanalyzer(fragment_observer)
+    '''
 
 if __name__ == "__main__":
     main()

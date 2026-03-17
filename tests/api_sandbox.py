@@ -21,17 +21,6 @@ headers = {
     "Didata-Project-Id":    "1"
 }
 
-r = s.get(f"{BASE}/api/entities", headers=headers)
+r = s.get(f"{BASE}/api/workflows/8", headers=headers)
 
-all_entities = r.json()
-
-target_dir = r"C:\Users\dule\Documents\MashineFlow-by-DiData\tests"
-file_name = "all_entities.json"
-full_path = os.path.join(target_dir, file_name)
-
-os.makedirs(target_dir, exist_ok=True)
-
-with open(full_path, "w", encoding="utf-8") as f:
-    json.dump(all_entities, f, indent=4, ensure_ascii=False)
-
-print(f"Stored {len(all_entities)} entities in {full_path}")
+print(r.json())
