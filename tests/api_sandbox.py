@@ -21,18 +21,17 @@ headers = {
     "Didata-Project-Id":    "1"
 }
 
-r = s.get(f"{BASE}/api/workflows/8", headers=headers)
+r = s.get(f"{BASE}/api/entities", headers=headers)
 
-nodes = r.json().get("nodes", [])
+all_entities = r.json()
 
-for node in nodes:
-    if node["name"] == "DNA Quantification":
-        state_id = node["state_id"]
-        
-r = s.get(f"{BASE}/api/entities", params=)
+target_dir = r"C:\Users\dule\Documents\MashineFlow-by-DiData\tests"
+file_name = "all_entities.json"
+full_path = os.path.join(target_dir, file_name)
 
-"""
-json_obj = r.json().get("nodes", [])
-json_form_str = json.dumps(json_obj, indent=2)
-print(json_form_str)   
-"""
+os.makedirs(target_dir, exist_ok=True)
+
+with open(full_path, "w", encoding="utf-8") as f:
+    json.dump(all_entities, f, indent=4, ensure_ascii=False)
+
+print(f"Stored {len(all_entities)} entities in {full_path}")
