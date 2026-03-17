@@ -8,9 +8,9 @@
                 "file_pattern": "*.csv"
             },
             "api_config": {
-                "dna": "",
-                "pcr": "",
-                "lib": ""
+                "dna": "DNA Quantification",
+                "pcr": "16S PCR Quantification",
+                "lib": "16S Library Quantification"
             }
         },
         {

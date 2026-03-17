@@ -1,0 +1,2317 @@
+{
+    "id": 8,
+    "name": "16s QIAseq",
+    "description": null,
+    "roles": [
+        2,
+        7
+    ],
+    "created_at": "30-05-2024 15:04:47",
+    "updated_at": "22-02-2025 23:21:30",
+    "icon": {
+        "code": "mdi-dna",
+        "color": "#FF03ECFF"
+    },
+    "filters": null,
+    "nodes": [
+        {
+            "state_id": 62,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 12,
+                    "width": 113
+                },
+                {
+                    "field_id": 7,
+                    "width": 91
+                },
+                {
+                    "field_id": 13,
+                    "width": 117
+                },
+                {
+                    "field_id": 309,
+                    "width": 231
+                },
+                {
+                    "field_id": 289,
+                    "width": 98
+                },
+                {
+                    "field_id": 358,
+                    "width": 130
+                },
+                {
+                    "field_id": 214,
+                    "width": 71
+                },
+                {
+                    "field_id": 157,
+                    "width": 109
+                },
+                {
+                    "field_id": 158,
+                    "width": 95
+                },
+                {
+                    "field_id": 245,
+                    "width": 200
+                },
+                {
+                    "field_id": 776,
+                    "width": 144
+                },
+                {
+                    "field_id": 21,
+                    "width": 97
+                },
+                {
+                    "field_id": 337,
+                    "width": 200
+                }
+            ],
+            "layout": {
+                "position_x": -450,
+                "position_y": -800
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 32
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 22
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 28
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 72
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 30
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                }
+            ],
+            "icon": {
+                "code": "mdi-test-tube-empty",
+                "color": "#FF0000"
+            },
+            "name": "16S Sample Reg & DNA extraction",
+            "is_starter": true,
+            "identify_entities_by": 7,
+            "id": 8000001,
+            "filters": [],
+            "highlight": [
+                {
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 8
+                        },
+                        {
+                            "type": "field",
+                            "value": 201
+                        }
+                    ],
+                    "name": "highlight 1",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 201,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#DEE8F1",
+                    "text_color": "#0000AA",
+                    "icon": "mdi-fridge-industrial-outline"
+                }
+            ],
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": [
+                {
+                    "sort_by": 309,
+                    "sort_type": "DESC"
+                }
+            ],
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000002
+            ]
+        },
+        {
+            "state_id": 85,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 12,
+                    "width": 113
+                },
+                {
+                    "field_id": 309,
+                    "width": 253
+                },
+                {
+                    "field_id": 7,
+                    "width": 98
+                },
+                {
+                    "field_id": 214,
+                    "width": 74
+                },
+                {
+                    "field_id": 218,
+                    "width": 126
+                },
+                {
+                    "field_id": 13,
+                    "width": 186
+                },
+                {
+                    "field_id": 21,
+                    "width": 94
+                },
+                {
+                    "field_id": 219,
+                    "width": 131
+                },
+                {
+                    "field_id": 345,
+                    "width": 187
+                },
+                {
+                    "field_id": 357,
+                    "width": 226
+                },
+                {
+                    "field_id": 358,
+                    "width": 130
+                }
+            ],
+            "layout": {
+                "position_x": -450,
+                "position_y": -700
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 33
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 79
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 29
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 35
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 30
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 134
+                }
+            ],
+            "icon": {
+                "code": "mdi-dna",
+                "color": "#0000FF"
+            },
+            "name": "DNA Quantification",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000002,
+            "filters": [],
+            "highlight": [
+                {
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 201
+                        }
+                    ],
+                    "name": "highlight 1",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 201,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#DEE8F1",
+                    "text_color": "#000055",
+                    "icon": "mdi-fridge-industrial-alert-outline"
+                }
+            ],
+            "fixed_choice_as": "value",
+            "per_page": null,
+            "search_value": null,
+            "selected_entities": [
+                29035,
+                29036,
+                29037,
+                29038,
+                29039,
+                29040,
+                29041,
+                29042,
+                29043,
+                29044,
+                29045,
+                29046,
+                29015,
+                29016,
+                29017,
+                29018,
+                29019,
+                29020,
+                29021,
+                29022,
+                29023,
+                29024,
+                29025,
+                29026,
+                29027,
+                29028,
+                29029,
+                29030,
+                29031,
+                29032,
+                29033,
+                29034,
+                28995,
+                28996,
+                28997,
+                28998,
+                28999,
+                29000,
+                29001,
+                29002,
+                29003,
+                29006,
+                29007,
+                29008,
+                29009,
+                29010,
+                29011,
+                29012,
+                29013,
+                29014
+            ],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": [
+                {
+                    "sort_by": 13,
+                    "sort_type": "DESC"
+                }
+            ],
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000003
+            ]
+        },
+        {
+            "state_id": 91,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 309,
+                    "width": 330
+                },
+                {
+                    "field_id": 7,
+                    "width": 107
+                },
+                {
+                    "field_id": 358,
+                    "width": 130
+                },
+                {
+                    "field_id": 219,
+                    "width": 126
+                },
+                {
+                    "field_id": 315,
+                    "width": 142
+                },
+                {
+                    "field_id": 214,
+                    "width": 74
+                },
+                {
+                    "field_id": 12,
+                    "width": 200
+                },
+                {
+                    "field_id": 13,
+                    "width": 187
+                },
+                {
+                    "field_id": 207,
+                    "width": 150
+                },
+                {
+                    "field_id": 289,
+                    "width": 118
+                },
+                {
+                    "field_id": 245,
+                    "width": 120
+                },
+                {
+                    "field_id": 314,
+                    "width": 136
+                },
+                {
+                    "field_id": 21,
+                    "width": 95
+                },
+                {
+                    "field_id": 337,
+                    "width": 162
+                },
+                {
+                    "field_id": 206,
+                    "width": 140
+                }
+            ],
+            "layout": {
+                "position_x": -450,
+                "position_y": -600
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 63
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 37
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 30
+                }
+            ],
+            "icon": {
+                "code": "mdi-dna",
+                "color": "#0000FF"
+            },
+            "name": "16S PCR",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000003,
+            "filters": [],
+            "highlight": [
+                {
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 8
+                        },
+                        {
+                            "type": "field",
+                            "value": 228
+                        },
+                        {
+                            "type": "field",
+                            "value": 201
+                        }
+                    ],
+                    "name": "highlight 1",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "||",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 201,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#DEE8F1",
+                    "text_color": "#000055",
+                    "icon": "mdi-fridge-industrial-alert-outline"
+                }
+            ],
+            "fixed_choice_as": "value",
+            "per_page": null,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": [
+                {
+                    "sort_by": 7,
+                    "sort_type": "DESC"
+                }
+            ],
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000012
+            ]
+        },
+        {
+            "state_id": 527,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 289,
+                    "width": 98
+                },
+                {
+                    "field_id": 13,
+                    "width": 128
+                },
+                {
+                    "field_id": 309,
+                    "width": 125
+                },
+                {
+                    "field_id": 7,
+                    "width": 107
+                },
+                {
+                    "field_id": 268,
+                    "width": 91
+                },
+                {
+                    "field_id": 11,
+                    "width": 139
+                },
+                {
+                    "field_id": 21,
+                    "width": 100
+                },
+                {
+                    "field_id": 338,
+                    "width": 179
+                }
+            ],
+            "layout": {
+                "position_x": -450,
+                "position_y": -300
+            },
+            "actions": [
+                {
+                    "action_type": "plugin",
+                    "action_id": 15
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                }
+            ],
+            "icon": {
+                "code": "mdi-dna",
+                "color": "#0000FF"
+            },
+            "name": "Index PCR",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000004,
+            "filters": [],
+            "highlight": [
+                {
+                    "name": "highlight 1",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 213,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#DEE8F1",
+                    "text_color": "#550000",
+                    "icon": "mdi-sync",
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 213
+                        }
+                    ]
+                }
+            ],
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": null,
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000005
+            ]
+        },
+        {
+            "state_id": 528,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 13,
+                    "width": 133
+                },
+                {
+                    "field_id": 309,
+                    "width": 213
+                },
+                {
+                    "field_id": 289,
+                    "width": 98
+                },
+                {
+                    "field_id": 15,
+                    "width": 123
+                },
+                {
+                    "field_id": 16,
+                    "width": 125
+                },
+                {
+                    "field_id": 17,
+                    "width": 108
+                },
+                {
+                    "field_id": 18,
+                    "width": 124
+                },
+                {
+                    "field_id": 19,
+                    "width": 108
+                },
+                {
+                    "field_id": 830,
+                    "width": 141
+                },
+                {
+                    "field_id": 277,
+                    "width": 175
+                },
+                {
+                    "field_id": 831,
+                    "width": 162
+                },
+                {
+                    "field_id": 7,
+                    "width": 111
+                },
+                {
+                    "field_id": 284,
+                    "width": 202
+                },
+                {
+                    "field_id": 776,
+                    "width": 160
+                },
+                {
+                    "field_id": 829,
+                    "width": 117
+                },
+                {
+                    "field_id": 21,
+                    "width": 100
+                },
+                {
+                    "field_id": 358,
+                    "width": 125
+                }
+            ],
+            "layout": {
+                "position_x": -150,
+                "position_y": -300
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 49
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                }
+            ],
+            "icon": {
+                "code": "mdi-library-shelves",
+                "color": "#0000FF"
+            },
+            "name": "Index PCR  Clean up",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000005,
+            "filters": [],
+            "highlight": null,
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [
+                22796
+            ],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": [
+                {
+                    "sort_by": 13,
+                    "sort_type": "DESC"
+                }
+            ],
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000006
+            ]
+        },
+        {
+            "state_id": 529,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 14,
+                    "width": 60
+                },
+                {
+                    "field_id": 13,
+                    "width": 135
+                },
+                {
+                    "field_id": 15,
+                    "width": 123
+                },
+                {
+                    "field_id": 16,
+                    "width": 123
+                },
+                {
+                    "field_id": 17,
+                    "width": 106
+                },
+                {
+                    "field_id": 18,
+                    "width": 123
+                },
+                {
+                    "field_id": 19,
+                    "width": 106
+                },
+                {
+                    "field_id": 309,
+                    "width": 307
+                },
+                {
+                    "field_id": 830,
+                    "width": 141
+                },
+                {
+                    "field_id": 277,
+                    "width": 164
+                },
+                {
+                    "field_id": 293,
+                    "width": 224
+                },
+                {
+                    "field_id": 831,
+                    "width": 162
+                },
+                {
+                    "field_id": 317,
+                    "width": 245
+                },
+                {
+                    "field_id": 245,
+                    "width": 120
+                },
+                {
+                    "field_id": 21,
+                    "width": 95
+                }
+            ],
+            "layout": {
+                "position_x": 200,
+                "position_y": -300
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 50
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 56
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                }
+            ],
+            "icon": {
+                "code": "mdi-library-shelves",
+                "color": "#0072CE"
+            },
+            "name": "16S Library Quantification",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000006,
+            "filters": [],
+            "highlight": [
+                {
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 8
+                        }
+                    ],
+                    "name": "highlight 1",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 8,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#DEE8F1",
+                    "text_color": "#000055",
+                    "icon": "mdi-fridge-industrial-alert-outline"
+                }
+            ],
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [
+                45807,
+                45810,
+                45813
+            ],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": [
+                {
+                    "sort_by": 13,
+                    "sort_type": "DESC"
+                }
+            ],
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000007
+            ]
+        },
+        {
+            "state_id": 530,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 348,
+                    "width": 200
+                },
+                {
+                    "field_id": 352,
+                    "width": 200
+                },
+                {
+                    "field_id": 13,
+                    "width": 124
+                },
+                {
+                    "field_id": 309,
+                    "width": 238
+                },
+                {
+                    "field_id": 337,
+                    "width": 200
+                },
+                {
+                    "field_id": 293,
+                    "width": 199
+                },
+                {
+                    "field_id": 266,
+                    "width": 158
+                },
+                {
+                    "field_id": 317,
+                    "width": 247
+                },
+                {
+                    "field_id": 319,
+                    "width": 212
+                },
+                {
+                    "field_id": 326,
+                    "width": 184
+                },
+                {
+                    "field_id": 339,
+                    "width": 138
+                },
+                {
+                    "field_id": 21,
+                    "width": 100
+                },
+                {
+                    "field_id": 358,
+                    "width": 125
+                },
+                {
+                    "field_id": 318,
+                    "width": 203
+                }
+            ],
+            "layout": {
+                "position_x": 600,
+                "position_y": -300
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 51
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 82
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 110
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 62
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 77
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 114
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 126
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                }
+            ],
+            "icon": {
+                "code": "mdi-library-shelves",
+                "color": "#0072CE"
+            },
+            "name": "16S Library Visualization & 2nM",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000007,
+            "filters": {
+                "type": "bracket",
+                "operationCode": "&&",
+                "conditions": [
+                    {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [],
+                        "relation": {
+                            "type": "hasMany",
+                            "byOperand": 11,
+                            "aggregation": "count",
+                            "alias": "#",
+                            "width": 101,
+                            "selectOnlyOperands": null,
+                            "label": "#"
+                        }
+                    }
+                ]
+            },
+            "highlight": [
+                {
+                    "name": "highlight 1",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "!!",
+                                "operand": 348,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#005500",
+                    "text_color": "#FFFFFF",
+                    "icon": null,
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 348
+                        }
+                    ]
+                }
+            ],
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": [
+                {
+                    "sort_by": 13,
+                    "sort_type": "DESC"
+                }
+            ],
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000008
+            ]
+        },
+        {
+            "state_id": 538,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 293,
+                    "width": 215
+                },
+                {
+                    "field_id": 317,
+                    "width": 231
+                },
+                {
+                    "field_id": 854,
+                    "width": 274
+                },
+                {
+                    "field_id": 309,
+                    "width": 245
+                },
+                {
+                    "field_id": 337,
+                    "width": 200
+                },
+                {
+                    "field_id": 326,
+                    "width": 178
+                },
+                {
+                    "field_id": 339,
+                    "width": 200
+                },
+                {
+                    "field_id": 776,
+                    "width": 160
+                },
+                {
+                    "field_id": 829,
+                    "width": 117
+                },
+                {
+                    "field_id": 21,
+                    "width": 94
+                },
+                {
+                    "field_id": 358,
+                    "width": 130
+                },
+                {
+                    "field_id": 291,
+                    "width": 271
+                },
+                {
+                    "field_id": 266,
+                    "width": 149
+                },
+                {
+                    "field_id": 306,
+                    "width": 220
+                },
+                {
+                    "field_id": 335,
+                    "width": 202
+                },
+                {
+                    "field_id": 832,
+                    "width": 252
+                },
+                {
+                    "field_id": 292,
+                    "width": 163
+                },
+                {
+                    "field_id": 352,
+                    "width": 254
+                }
+            ],
+            "layout": {
+                "position_x": 600,
+                "position_y": -450
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 59
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 36
+                }
+            ],
+            "icon": {
+                "code": "mdi-library-shelves",
+                "color": "#0072CE"
+            },
+            "name": "Sample Ready for Pooling",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000008,
+            "filters": [],
+            "highlight": [
+                {
+                    "name": "highlight 1",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 335,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#FFFF00",
+                    "text_color": "#FF0000",
+                    "icon": null,
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 335
+                        }
+                    ]
+                }
+            ],
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [
+                22624
+            ],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": [
+                {
+                    "sort_by": 13,
+                    "sort_type": "DESC"
+                }
+            ],
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000009
+            ]
+        },
+        {
+            "state_id": 555,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 309,
+                    "width": 119
+                },
+                {
+                    "field_id": 13,
+                    "width": 126
+                },
+                {
+                    "field_id": 262,
+                    "width": 118
+                },
+                {
+                    "field_id": 7,
+                    "width": 107
+                },
+                {
+                    "field_id": 331,
+                    "width": 195
+                },
+                {
+                    "field_id": 157,
+                    "width": 120
+                },
+                {
+                    "field_id": 158,
+                    "width": 106
+                },
+                {
+                    "field_id": 245,
+                    "width": 120
+                },
+                {
+                    "field_id": 21,
+                    "width": 200
+                }
+            ],
+            "layout": {
+                "position_x": 600,
+                "position_y": -550
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 78
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 118
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                }
+            ],
+            "icon": {
+                "code": null,
+                "color": "#0072CE"
+            },
+            "name": "Miseq Sample Sheet",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000009,
+            "filters": {
+                "type": "bracket",
+                "operationCode": "&&",
+                "conditions": [
+                    {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [],
+                        "relation": {
+                            "type": "hasMany",
+                            "byOperand": 332,
+                            "aggregation": "count",
+                            "alias": "# of pooled libraries",
+                            "width": 176,
+                            "selectOnlyOperands": null,
+                            "label": "# of pooled libraries"
+                        }
+                    }
+                ]
+            },
+            "highlight": null,
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": true,
+            "relation_field": 332,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": null,
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000010
+            ]
+        },
+        {
+            "state_id": 540,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 337,
+                    "width": 146
+                },
+                {
+                    "field_id": 353,
+                    "width": 66
+                },
+                {
+                    "field_id": 14,
+                    "width": 73
+                },
+                {
+                    "field_id": 12,
+                    "width": 119
+                },
+                {
+                    "field_id": 13,
+                    "width": 124
+                },
+                {
+                    "field_id": 24,
+                    "width": 134
+                },
+                {
+                    "field_id": 262,
+                    "width": 116
+                },
+                {
+                    "field_id": 309,
+                    "width": 119
+                },
+                {
+                    "field_id": 7,
+                    "width": 107
+                },
+                {
+                    "field_id": 157,
+                    "width": 120
+                },
+                {
+                    "field_id": 158,
+                    "width": 106
+                },
+                {
+                    "field_id": 163,
+                    "width": 124
+                },
+                {
+                    "field_id": 245,
+                    "width": 120
+                },
+                {
+                    "field_id": 776,
+                    "width": 160
+                },
+                {
+                    "field_id": 21,
+                    "width": 98
+                }
+            ],
+            "layout": {
+                "position_x": 600,
+                "position_y": -650
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 82
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 124
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 125
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 127
+                }
+            ],
+            "icon": {
+                "code": "mdi-view-sequential-outline",
+                "color": "#00AAAA"
+            },
+            "name": "Sequencing QC",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000010,
+            "filters": {
+                "type": "bracket",
+                "operationCode": "&&",
+                "conditions": [
+                    {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "=",
+                                "operand": 826,
+                                "value": 1565,
+                                "is_favorite": false
+                            }
+                        ],
+                        "relation": {
+                            "type": "hasMany",
+                            "byOperand": 827,
+                            "aggregation": "count",
+                            "alias": "# Failed Sequences",
+                            "width": 101,
+                            "selectOnlyOperands": null,
+                            "label": "# Failed Sequences"
+                        }
+                    },
+                    {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "=",
+                                "operand": 826,
+                                "value": 1566,
+                                "is_favorite": false
+                            }
+                        ],
+                        "relation": {
+                            "type": "hasMany",
+                            "byOperand": 827,
+                            "aggregation": "count",
+                            "alias": "# Succeful Sequences",
+                            "selectOnlyOperands": null,
+                            "label": "# Succeful Sequences"
+                        }
+                    }
+                ]
+            },
+            "highlight": null,
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": true,
+            "relation_field": 141,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": null,
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000011
+            ]
+        },
+        {
+            "state_id": 1567,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 309,
+                    "width": 109
+                },
+                {
+                    "field_id": 353,
+                    "width": 66
+                },
+                {
+                    "field_id": 14,
+                    "width": 73
+                },
+                {
+                    "field_id": 12,
+                    "width": 119
+                },
+                {
+                    "field_id": 13,
+                    "width": 124
+                },
+                {
+                    "field_id": 262,
+                    "width": 116
+                },
+                {
+                    "field_id": 337,
+                    "width": 155
+                },
+                {
+                    "field_id": 7,
+                    "width": 107
+                },
+                {
+                    "field_id": 157,
+                    "width": 120
+                },
+                {
+                    "field_id": 158,
+                    "width": 106
+                },
+                {
+                    "field_id": 163,
+                    "width": 124
+                },
+                {
+                    "field_id": 245,
+                    "width": 120
+                },
+                {
+                    "field_id": 776,
+                    "width": 160
+                },
+                {
+                    "field_id": 21,
+                    "width": 95
+                }
+            ],
+            "layout": {
+                "position_x": 600,
+                "position_y": -750
+            },
+            "actions": [],
+            "icon": {
+                "code": "mdi-laptop",
+                "color": "#0072CE"
+            },
+            "name": "Bioinformatics",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000011,
+            "filters": {
+                "type": "bracket",
+                "operationCode": "&&",
+                "conditions": [
+                    {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "=",
+                                "operand": 826,
+                                "value": 1566,
+                                "is_favorite": false
+                            }
+                        ],
+                        "relation": {
+                            "type": "hasMany",
+                            "byOperand": 11,
+                            "aggregation": "count",
+                            "alias": "QC Success",
+                            "selectOnlyOperands": null,
+                            "label": "QC Success"
+                        }
+                    },
+                    {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "=",
+                                "operand": 826,
+                                "value": 1565,
+                                "is_favorite": false
+                            }
+                        ],
+                        "relation": {
+                            "type": "hasMany",
+                            "byOperand": 11,
+                            "aggregation": "count",
+                            "alias": "QC Failed",
+                            "selectOnlyOperands": null,
+                            "label": "QC Failed"
+                        }
+                    }
+                ]
+            },
+            "highlight": null,
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": true,
+            "relation_field": 141,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": null,
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": []
+        },
+        {
+            "state_id": 518,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 289,
+                    "width": 98
+                },
+                {
+                    "field_id": 13,
+                    "width": 200
+                },
+                {
+                    "field_id": 309,
+                    "width": 163
+                },
+                {
+                    "field_id": 7,
+                    "width": 107
+                },
+                {
+                    "field_id": 206,
+                    "width": 140
+                },
+                {
+                    "field_id": 258,
+                    "width": 151
+                },
+                {
+                    "field_id": 338,
+                    "width": 184
+                },
+                {
+                    "field_id": 157,
+                    "width": 125
+                },
+                {
+                    "field_id": 245,
+                    "width": 126
+                },
+                {
+                    "field_id": 264,
+                    "width": 139
+                },
+                {
+                    "field_id": 21,
+                    "width": 100
+                }
+            ],
+            "layout": {
+                "position_x": -450,
+                "position_y": -500
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 42
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 44
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                }
+            ],
+            "icon": {
+                "code": "mdi-dna",
+                "color": "#0072CE"
+            },
+            "name": "16S PCR Quantification",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000012,
+            "filters": [],
+            "highlight": [
+                {
+                    "name": "highlight 1",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 21,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#DEE8F1",
+                    "text_color": "#000000",
+                    "icon": null,
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 21
+                        }
+                    ]
+                },
+                {
+                    "name": "highlight 3",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "||",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 8,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#DEE8F1",
+                    "text_color": "#005555",
+                    "icon": "mdi-fridge-industrial-alert-outline",
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 8
+                        }
+                    ]
+                }
+            ],
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [
+                21673
+            ],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": [
+                {
+                    "sort_by": 13,
+                    "sort_type": "DESC"
+                }
+            ],
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000013
+            ]
+        },
+        {
+            "state_id": 524,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 13,
+                    "width": 198
+                },
+                {
+                    "field_id": 309,
+                    "width": 244
+                },
+                {
+                    "field_id": 358,
+                    "width": 200
+                },
+                {
+                    "field_id": 7,
+                    "width": 95
+                },
+                {
+                    "field_id": 268,
+                    "width": 91
+                },
+                {
+                    "field_id": 310,
+                    "width": 116
+                },
+                {
+                    "field_id": 311,
+                    "width": 116
+                },
+                {
+                    "field_id": 328,
+                    "width": 174
+                },
+                {
+                    "field_id": 333,
+                    "width": 183
+                },
+                {
+                    "field_id": 334,
+                    "width": 183
+                },
+                {
+                    "field_id": 348,
+                    "width": 113
+                },
+                {
+                    "field_id": 267,
+                    "width": 146
+                },
+                {
+                    "field_id": 349,
+                    "width": 229
+                },
+                {
+                    "field_id": 258,
+                    "width": 148
+                },
+                {
+                    "field_id": 338,
+                    "width": 168
+                },
+                {
+                    "field_id": 754,
+                    "width": 200
+                },
+                {
+                    "field_id": 11,
+                    "width": 200
+                },
+                {
+                    "field_id": 21,
+                    "width": 200
+                },
+                {
+                    "field_id": 206,
+                    "width": 200
+                },
+                {
+                    "field_id": 219,
+                    "width": 200
+                },
+                {
+                    "field_id": 329,
+                    "width": 200
+                },
+                {
+                    "field_id": 210,
+                    "width": 200
+                },
+                {
+                    "field_id": 289,
+                    "width": 98
+                }
+            ],
+            "layout": {
+                "position_x": -450,
+                "position_y": -400
+            },
+            "actions": [
+                {
+                    "action_type": "action",
+                    "action_id": 43
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 45
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 82
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 41
+                },
+                {
+                    "action_type": "action",
+                    "action_id": 31
+                }
+            ],
+            "icon": {
+                "code": "mdi-dna",
+                "color": "#0072CE"
+            },
+            "name": "Post PCR Visualization & Clean up",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000013,
+            "filters": [],
+            "highlight": [
+                {
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 201
+                        }
+                    ],
+                    "name": "highlight 1",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 201,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#DEE8F1",
+                    "text_color": "#000055",
+                    "icon": "mdi-fridge-industrial-alert-outline"
+                },
+                {
+                    "highlighted_columns": [
+                        {
+                            "type": "field",
+                            "value": 353
+                        }
+                    ],
+                    "name": "highlight 2",
+                    "filters": {
+                        "type": "bracket",
+                        "operationCode": "&&",
+                        "conditions": [
+                            {
+                                "type": "condition",
+                                "operationCode": "has",
+                                "operand": 353,
+                                "value": null,
+                                "is_favorite": false
+                            }
+                        ]
+                    },
+                    "background_color": "#DEE8F1",
+                    "text_color": "#550000",
+                    "icon": "picture_as_pdf"
+                }
+            ],
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": null,
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": [
+                8000004
+            ]
+        },
+        {
+            "state_id": 1566,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [],
+            "layout": {
+                "position_x": 900,
+                "position_y": -600
+            },
+            "actions": [],
+            "icon": {
+                "code": "mdi-check-circle",
+                "color": "#00FF00"
+            },
+            "name": "Passed  Sequencing QC",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000014,
+            "filters": [],
+            "highlight": null,
+            "fixed_choice_as": null,
+            "per_page": null,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": null,
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": []
+        },
+        {
+            "state_id": 1565,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [],
+            "layout": {
+                "position_x": 900,
+                "position_y": -700
+            },
+            "actions": [],
+            "icon": {
+                "code": "cancel",
+                "color": "#FF0000"
+            },
+            "name": "Failed Sequencing QC",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000015,
+            "filters": [],
+            "highlight": null,
+            "fixed_choice_as": null,
+            "per_page": null,
+            "search_value": null,
+            "selected_entities": [],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": null,
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": []
+        },
+        {
+            "state_id": 86,
+            "created_at": "20-02-2026 12:56:40",
+            "updated_at": "26-02-2026 11:24:30",
+            "columns": [
+                {
+                    "field_id": 14,
+                    "width": 57
+                },
+                {
+                    "field_id": 12,
+                    "width": 103
+                },
+                {
+                    "field_id": 13,
+                    "width": 108
+                },
+                {
+                    "field_id": 24,
+                    "width": 179
+                },
+                {
+                    "field_id": 248,
+                    "width": 114
+                },
+                {
+                    "field_id": 309,
+                    "width": 103
+                },
+                {
+                    "field_id": 207,
+                    "width": 140
+                },
+                {
+                    "field_id": 260,
+                    "width": 104
+                },
+                {
+                    "field_id": 7,
+                    "width": 91
+                },
+                {
+                    "field_id": 206,
+                    "width": 121
+                },
+                {
+                    "field_id": 252,
+                    "width": 159
+                },
+                {
+                    "field_id": 258,
+                    "width": 132
+                },
+                {
+                    "field_id": 259,
+                    "width": 143
+                },
+                {
+                    "field_id": 268,
+                    "width": 75
+                },
+                {
+                    "field_id": 310,
+                    "width": 115
+                },
+                {
+                    "field_id": 311,
+                    "width": 115
+                },
+                {
+                    "field_id": 328,
+                    "width": 174
+                },
+                {
+                    "field_id": 333,
+                    "width": 200
+                },
+                {
+                    "field_id": 334,
+                    "width": 200
+                },
+                {
+                    "field_id": 338,
+                    "width": 200
+                },
+                {
+                    "field_id": 26,
+                    "width": 200
+                },
+                {
+                    "field_id": 232,
+                    "width": 200
+                },
+                {
+                    "field_id": 329,
+                    "width": 200
+                },
+                {
+                    "field_id": 348,
+                    "width": 200
+                },
+                {
+                    "field_id": 754,
+                    "width": 200
+                },
+                {
+                    "field_id": 755,
+                    "width": 200
+                },
+                {
+                    "field_id": 11,
+                    "width": 200
+                },
+                {
+                    "field_id": 157,
+                    "width": 200
+                },
+                {
+                    "field_id": 158,
+                    "width": 200
+                },
+                {
+                    "field_id": 245,
+                    "width": 200
+                },
+                {
+                    "field_id": 776,
+                    "width": 200
+                },
+                {
+                    "field_id": 247,
+                    "width": 200
+                },
+                {
+                    "field_id": 264,
+                    "width": 200
+                },
+                {
+                    "field_id": 267,
+                    "width": 200
+                },
+                {
+                    "field_id": 21,
+                    "width": 200
+                },
+                {
+                    "field_id": 214,
+                    "width": 200
+                },
+                {
+                    "field_id": 215,
+                    "width": 200
+                },
+                {
+                    "field_id": 216,
+                    "width": 200
+                },
+                {
+                    "field_id": 217,
+                    "width": 200
+                },
+                {
+                    "field_id": 218,
+                    "width": 200
+                },
+                {
+                    "field_id": 219,
+                    "width": 200
+                },
+                {
+                    "field_id": 261,
+                    "width": 200
+                },
+                {
+                    "field_id": 265,
+                    "width": 200
+                },
+                {
+                    "field_id": 349,
+                    "width": 200
+                },
+                {
+                    "field_id": 357,
+                    "width": 200
+                },
+                {
+                    "field_id": 358,
+                    "width": 200
+                },
+                {
+                    "field_id": 337,
+                    "width": 200
+                },
+                {
+                    "field_id": 97,
+                    "width": 200
+                },
+                {
+                    "field_id": 345,
+                    "width": 200
+                },
+                {
+                    "field_id": 28,
+                    "width": 200
+                },
+                {
+                    "field_id": 241,
+                    "width": 200
+                },
+                {
+                    "field_id": 342,
+                    "width": 220
+                },
+                {
+                    "field_id": 756,
+                    "width": 200
+                },
+                {
+                    "field_id": 289,
+                    "width": 200
+                },
+                {
+                    "field_id": 314,
+                    "width": 200
+                },
+                {
+                    "field_id": 315,
+                    "width": 200
+                },
+                {
+                    "field_id": 210,
+                    "width": 200
+                },
+                {
+                    "field_id": 269,
+                    "width": 200
+                },
+                {
+                    "field_id": 343,
+                    "width": 200
+                },
+                {
+                    "field_id": 346,
+                    "width": 200
+                }
+            ],
+            "layout": {
+                "position_x": 900,
+                "position_y": -800
+            },
+            "actions": [],
+            "icon": {
+                "code": "mdi-delete-circle-outline",
+                "color": "#FF0000"
+            },
+            "name": "Discarded",
+            "is_starter": false,
+            "identify_entities_by": 7,
+            "id": 8000016,
+            "filters": [],
+            "highlight": null,
+            "fixed_choice_as": "value",
+            "per_page": 50,
+            "search_value": null,
+            "selected_entities": [
+                21835
+            ],
+            "show_related_resource": null,
+            "relation_field": null,
+            "auto_execute_on_scan_default": true,
+            "second_grid": [],
+            "sort": [
+                {
+                    "sort_by": 13,
+                    "sort_type": "DESC"
+                }
+            ],
+            "position": 0,
+            "is_scan_mode": 0,
+            "scan_by": null,
+            "target_nodes": []
+        }
+    ]
+}

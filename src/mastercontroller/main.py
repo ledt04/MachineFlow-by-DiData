@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 
 from src.watchdog.qubit_watcher import watch_qubit, stop_watch_qubit, Handler as QubitHandler
 from src.watchdog.fragmentanalyzer_watcher import watch_fragmentanalyzer, stop_watch_fragmentanalyzer, Handler as FragmentHandler
-from src.utils.logger import login
+from src.utils.logger import login, logout
 from src.mashines.qubit.main import main as qubit_main
 
 def main():
@@ -22,15 +22,15 @@ def main():
         while True:
             if qubit_handler.file_created:
                 qubit_handler.file_created = False
-                login()
-                qubit_main() # process_qubit(session)
-                # logout()
+                session = login()
+                qubit_main(session)
+                logout(session)
 
             if fragment_handler.file_created:
                 fragment_handler.file_created = False
                 session = login()
                 # process_fragmentanalyzer(session)
-                # logout()
+                logout(session)
             
             time.sleep(1)
     except KeyboardInterrupt:
