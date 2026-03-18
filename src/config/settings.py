@@ -49,6 +49,7 @@ def get_qubit_genomics(genomic):
 
 def get_project_id(session, name):
     response = session.get(f"{API_BASE_URL}/api/access-rights/projects", headers=get_headers())
+    print(f"{response.status_code}: get project id")
     projects = response.json()
     for project in projects:
         if project["name"] == name:
@@ -57,6 +58,7 @@ def get_project_id(session, name):
 
 def get_workflow_id_by_name(session, name):
     response = session.get(f"{API_BASE_URL}/api/workflows", headers=get_headers())
+    print(f"{response.status_code} get workflow id by name")
     workflows = response.json()
     for workflow in workflows:
         if workflow["name"] == name:

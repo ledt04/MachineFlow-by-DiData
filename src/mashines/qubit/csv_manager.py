@@ -1,8 +1,8 @@
 import pandas as pd
+from pathlib import Path
 
-def load_csv(directory):
-    try:
-        df = pd.read_csv(directory)
-        return df
-    except Exception as e:
-        print(f"Error loading data: {e}")
+def load_csv(directory: Path):
+    csv_file = list(directory.glob("*.csv"))
+    if not csv_file:
+        raise FileNotFoundError(f"No CSV file found in {directory}")
+    return pd.read_csv(csv_file[0])

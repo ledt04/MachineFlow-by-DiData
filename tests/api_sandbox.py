@@ -20,7 +20,16 @@ headers = {
     "Accept":               "application/json",
     "Didata-Project-Id":    "1"
 }
+'''
+r = s.post(f"{BASE}/api/entities", headers=headers, json={
+    "entitytype_id": 11,          # DNA
+    "Sample__Id": "TEST-001",     # your sample ID
+    "Extracted_DNA_ng_ul": "12.5", # Qubit value
+    "Status": 85,                 # places it on DNA Quantification node
+})
+'''
+r = s.delete(f"{BASE}/api/entities/53003", headers=headers)
 
-r = s.get(f"{BASE}/api/workflows/8", headers=headers)
-
+print(r.status_code) 
+# print(json.dumps(r.json(), indent=4))
 print(r.json())
