@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from dotenv import load_dotenv
 from src.utils.auth import get_headers, set_auth
+from src.utils.error_handling import handle_get_project_id_responses, handle_get_workflow_id_responses
 
 load_dotenv()
 
@@ -49,7 +50,7 @@ def get_qubit_genomics(genomic):
 
 def get_project_id(session, name):
     response = session.get(f"{API_BASE_URL}/api/access-rights/projects", headers=get_headers())
-    print(f"{response.status_code}: get project id")
+    handle_get_project_id_responses(response)
     projects = response.json()
     for project in projects:
         if project["name"] == name:
@@ -58,7 +59,7 @@ def get_project_id(session, name):
 
 def get_workflow_id_by_name(session, name):
     response = session.get(f"{API_BASE_URL}/api/workflows", headers=get_headers())
-    print(f"{response.status_code} get workflow id by name")
+    handle_get_workflow_id_responses(response)
     workflows = response.json()
     for workflow in workflows:
         if workflow["name"] == name:

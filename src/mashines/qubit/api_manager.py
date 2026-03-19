@@ -1,9 +1,10 @@
 from src.config.settings import API_BASE_URL
 from src.utils.auth import get_headers
+from src.utils.error_handling import handle_get_state_id_responses, handle_get_entities_responses
 
 def get_state_id(session, genomics: list, workflow_id: int):
     response = session.get(f"{API_BASE_URL}/api/workflows/{workflow_id}", headers=get_headers())
-    print(f"{response.status_code} get state id")
+    handle_get_state_id_responses(response)
     nodes = response.json().get("nodes", [])
     
     state_ids = {}
@@ -18,7 +19,7 @@ def get_state_id(session, genomics: list, workflow_id: int):
 
 def get_entities(session, state_ids):
     response = session.get(f"{API_BASE_URL}/api/entities", headers=get_headers())
-    print(f"{response.status_code} get entities")
+    handle_get_entities_responses(response)
     data = {"states": []}
     
     for state_id in state_ids:

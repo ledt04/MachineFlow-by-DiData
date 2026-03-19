@@ -28,8 +28,19 @@ r = s.post(f"{BASE}/api/entities", headers=headers, json={
     "Status": 85,                 # places it on DNA Quantification node
 })
 '''
-r = s.delete(f"{BASE}/api/entities/53003", headers=headers)
+r = s.get(f"{BASE}/api/entities", headers=headers)
+
+samples = []
+
+for entity in r.json():
+    if entity.get("Status") == 85:
+        samples.append({
+            "sample_name": entity.get("Sample__Id"),
+            "sample_id": entity.get("id"),
+            "created_at": entity.get("created_at")
+        })
+
 
 print(r.status_code) 
 # print(json.dumps(r.json(), indent=4))
-print(r.json())
+print(samples)

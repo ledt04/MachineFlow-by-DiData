@@ -30,13 +30,15 @@ def main(session):
     # print("\n")
     # print(sample_names)
     
+    print(state_ids)
+    
     # find matching sample name in csv file and stored didata names
     # detect which step (dna, pcr, lib)
-    if not sample_classifier(csv_sample_names, didata_sample_names):
+    sample_state_id = sample_classifier(csv_sample_names, didata_sample_names)
+    if not sample_state_id:
+        print("No matching sample names has been found")
         return
-    
-    # rename rest and std -> Standard
-
-    # format to correct step
 
     # upload csv to correct step
+    for state_name, state_id in state_ids.items():
+    print(f"{state_name}: {state_id}")

@@ -6,7 +6,6 @@ def sample_classifier(csv_names, didata_names):
             for sample in state["samples"]:
                 if csv_name == sample["sample_name"]:
                     return state["state_id"]
-    print("No matching sample names has been found")
     return None
     
     '''
