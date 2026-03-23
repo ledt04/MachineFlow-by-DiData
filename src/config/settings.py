@@ -73,3 +73,6 @@ def set_workflow_id(id):
 def get_workflow_id():
     global _workflow_id
     return _workflow_id
+
+def get_kit_name_dna_quantification_fc_number(name):
+    pass

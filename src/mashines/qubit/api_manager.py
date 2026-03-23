@@ -27,8 +27,8 @@ def get_entities(session, state_ids):
         for entity in response.json():
             if entity.get("Status") == state_id:
                 samples.append({
-                    "sample_name": entity.get("Sample__Id"),
-                    "sample_id": entity.get("id"),
+                    "sample_id": entity.get("Sample__Id"),
+                    "id": entity.get("id"),
                     "created_at": entity.get("created_at")
                 })
         if samples:
