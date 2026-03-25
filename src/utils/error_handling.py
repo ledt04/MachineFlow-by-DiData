@@ -46,3 +46,8 @@ def handle_upload_responses(response, genomic):
         return
     else:
         raise ValueError(f"{response.status_code}: {response.json().get("error", f"Unknown {genomic} Upload error")}")
+    
+def handle_find_data_group_return(group, csv):
+    if not group:
+        raise ValueError(f"No group found for: {csv["Sample Name"].iloc[0]}")
+    return

@@ -28,21 +28,19 @@ r = s.put(f"{BASE}/api/entities/53004", headers=headers, json={
     "output_volume" : 40
 })
 '''
-payload = {
+payload1 = {
     "data": [
         {
             "id": 53004,
-            "Extracted_DNA_ng_ul": "14.5",
-            "Kit_name_DNA_quantification_fc": 559,
-            "Quantification_date": "25-02-2025 10:36:53",
-            "output_volume": 100
+            "Status": 85
         },
         {
             "id": 53005,
-            "Extracted_DNA_ng_ul": "16.5",
-            "Kit_name_DNA_quantification_fc": 557,
-            "Quantification_date": "25-02-2025 10:36:53",
-            "output_volume": 100
+            "Status": 85
+        },
+        {
+            "id": 53006,
+            "Status": 85
         }
     ],
     "options": {
@@ -51,7 +49,40 @@ payload = {
     }
 }
 
-r = s.put(f"{BASE}/api/entities/batch", headers=headers, json=payload)
+payload2 = {
+    "data": [
+        {
+            "id": 53004,
+            "Extracted_DNA_ng_ul": None,
+            "Kit_name_DNA_quantification_fc": None,
+            "Quantification_date": None,
+            "output_volume": None,
+            "Status": 85
+        },
+        {
+            "id": 53005,
+            "Extracted_DNA_ng_ul": None,
+            "Kit_name_DNA_quantification_fc": None,
+            "Quantification_date": None,
+            "output_volume": None,
+            "Status": 85
+        },
+        {
+            "id": 53006,
+            "Extracted_DNA_ng_ul": None,
+            "Kit_name_DNA_quantification_fc": None,
+            "Quantification_date": None,
+            "output_volume": None,
+            "Status": 85
+        }
+    ],
+    "options": {
+        "identify_entities_by": ["id"], # how to find the row/entity you want to update
+        "upsert": False                 # what to do if it cannot find that row/entity
+    }
+}
+
+r = s.put(f"{BASE}/api/entities/batch", headers=headers, json=payload2)
 
 
 print(r.status_code)

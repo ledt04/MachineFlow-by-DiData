@@ -29,8 +29,9 @@ def get_entities(session, state_ids):
                 samples.append({
                     "sample_id": entity.get("Sample__Id"),
                     "id": entity.get("id"),
-                    "created_at": entity.get("created_at")
-                })
+                    "created_at": entity.get("created_at"),
+                    "dna_volume": entity.get("output_volume")                
+                    })
         if samples:
             data["states"].append({
                 "state_id": state_id,

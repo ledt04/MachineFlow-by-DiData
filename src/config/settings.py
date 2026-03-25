@@ -75,4 +75,4 @@ def get_workflow_id():
     return _workflow_id
 
 def get_kit_name_dna_quantification_fc_number(name):
-    pass
+    return MACHINE_CONFIG["machines"][0]["kit_name_dna_quantification_fc"][name]
