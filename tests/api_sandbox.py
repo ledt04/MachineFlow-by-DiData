@@ -32,15 +32,18 @@ payload1 = {
     "data": [
         {
             "id": 53004,
-            "Status": 85
+            "Status": 518,
+            "output_volume": 98
         },
         {
             "id": 53005,
-            "Status": 85
+            "Status": 518,
+            "output_volume": 98
         },
         {
             "id": 53006,
-            "Status": 85
+            "Status": 518,
+            "output_volume": 98
         }
     ],
     "options": {
@@ -82,7 +85,7 @@ payload2 = {
     }
 }
 
-r = s.put(f"{BASE}/api/entities/batch", headers=headers, json=payload2)
+r = s.put(f"{BASE}/api/entities/batch", headers=headers, json=payload1)
 
 
 print(r.status_code)
