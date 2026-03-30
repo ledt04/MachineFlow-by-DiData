@@ -56,7 +56,7 @@ def main(session):
             response = upload_pcr(session, csv_df, grouped_didata_samples)
             handle_upload_responses(response, genomic)
             
-        case _ if genomic == genomics[3]:
+        case _ if genomic == genomics[2]:
             response = upload_lib(session, csv_df, grouped_didata_samples)
             handle_upload_responses(response, genomic)
     return

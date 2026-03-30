@@ -32,18 +32,15 @@ payload1 = {
     "data": [
         {
             "id": 53004,
-            "Status": 518,
-            "output_volume": 98
+            "Status": 518
         },
         {
             "id": 53005,
-            "Status": 518,
-            "output_volume": 98
+            "Status": 518
         },
         {
             "id": 53006,
-            "Status": 518,
-            "output_volume": 98
+            "Status": 518
         }
     ],
     "options": {
@@ -55,28 +52,13 @@ payload1 = {
 payload2 = {
     "data": [
         {
-            "id": 53004,
-            "Extracted_DNA_ng_ul": None,
-            "Kit_name_DNA_quantification_fc": None,
-            "Quantification_date": None,
-            "output_volume": None,
-            "Status": 85
+            "id": 53004
         },
         {
-            "id": 53005,
-            "Extracted_DNA_ng_ul": None,
-            "Kit_name_DNA_quantification_fc": None,
-            "Quantification_date": None,
-            "output_volume": None,
-            "Status": 85
+            "id": 53005
         },
         {
-            "id": 53006,
-            "Extracted_DNA_ng_ul": None,
-            "Kit_name_DNA_quantification_fc": None,
-            "Quantification_date": None,
-            "output_volume": None,
-            "Status": 85
+            "id": 53006
         }
     ],
     "options": {

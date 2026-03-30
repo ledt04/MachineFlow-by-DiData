@@ -16,7 +16,9 @@
                 "ssDNA": 559,
                 "1X dsDNA BR": 558,
                 "1X dsDNA HS": 557
-            }
+            },
+            "temporary_groups": {
+        }
         },
         {
             "machine_id": 1,

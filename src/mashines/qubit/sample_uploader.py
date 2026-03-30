@@ -1,5 +1,5 @@
 from src.config.settings import API_BASE_URL, get_kit_name_dna_quantification_fc_number
-from src.utils.error_handling import handle_find_data_group_return
+from src.utils.error_handling import handle_find_data_group_return, handle_qubit_and_didata_amount_check
 from src.utils.auth import get_headers
 from datetime import datetime
 import json
@@ -19,10 +19,22 @@ def find_data_group(csv, didata):
     handle_find_data_group_return(target_group, csv)
     return target_group
 
+def remove_standard_from_csv(csv):
+    std_re = re.compile(r"^(?:\d*)(std|stnd|stdrd|stndrd|stand|stad|standard)[_\-\s]*(\d*)$", re.IGNORECASE)
+    
+    # remove standard from df
+    for i, sample in enumerate(csv["Sample Name"]):
+        if std_re.match(sample):
+            csv = csv.drop(i)
+    
+    return csv
+
 def upload_dna(session, csv, didata):
+    csv = remove_standard_from_csv(csv)
     # get id from first sample name
     # find id group and match
     target_group = find_data_group(csv, didata)
+    handle_qubit_and_didata_amount_check(csv, target_group, genomic="DNA")
     
     # Qubit Raw Data -> DiData Names
     # Test Date -> Quantification Date
@@ -42,7 +54,7 @@ def upload_dna(session, csv, didata):
     
     for i in range(len(target_group)):
         dna_vol = target_group[i]["dna_volume"] or 0
-        sample_vol = csv["Sample Volume (uL)"][i] or 0
+        sample_vol = csv["Sample Volum(uL)"][i] or 0
         
         payload["data"].append(
             {
@@ -50,21 +62,19 @@ def upload_dna(session, csv, didata):
             "Extracted_DNA_ng_ul": str(csv["Original Sample Conc."][i]),
             "Kit_name_DNA_quantification_fc": get_kit_name_dna_quantification_fc_number(csv["Assay Name"][i]),
             "Quantification_date": datetime.strptime(csv["Test Date"][i], "%d/%m/%Y %I:%M:%S %p").strftime("%d-%m-%Y %H:%M:%S"),
-            "output_volume": int(dna_vol - sample_vol)
+            "output_volume": int(dna_vol - sample_vol),
+            "Status": 85
             }
         )
+        
+            # Status
+            # 85, DNA Quantification
+            # 91, 16S PCR
         
     response = session.put(f"{API_BASE_URL}/api/entities/batch", headers=get_headers(), json=payload)
     return response
 
 def helper_pcr(csv, didata):
-    std_re = re.compile(r"^(?:\d*)(std|stnd|stdrd|stndrd|stand|stad|standard)[_\-\s]*(\d*)$", re.IGNORECASE)
-    
-    # remove standard from df
-    for i, sample in enumerate(csv["Sample Name"]):
-        if std_re.match(sample):
-            csv = csv.drop(i)
-    
     # check if 3 diffrent pools exist
     didata_sample_count = len(didata)
     csv_sample_count = len(csv["Sample Name"])
@@ -92,8 +102,10 @@ def helper_pcr(csv, didata):
     return csv.iloc[:didata_sample_count]
 
 def upload_pcr(session, csv, didata):
+    csv = remove_standard_from_csv(csv)
     # get id and find group
     target_group = find_data_group(csv, didata)
+    handle_qubit_and_didata_amount_check(csv, target_group, genomic="PCR")
     csv = helper_pcr(csv, target_group)
     # Qubit Raw Data -> DiData Names
     # PCR Quantification
@@ -104,6 +116,7 @@ def upload_pcr(session, csv, didata):
     # Add in Post PCR Visualization % CLean up for Entities
     # in case -> no pooled -> must be repeated
     # if value under 1 -> not pooled
+    is_pooled = True
 
     # Option: Create Action for Is Pooled or not mechanism
 
@@ -116,6 +129,12 @@ def upload_pcr(session, csv, didata):
     }
     
     for i in range(len(target_group)):
+        if csv["ng_ul"][i] < 1 or csv["ng_ul_pool_2"][i] < 1 or csv["ng_ul_pool_3"][i] < 1:
+            print("Value under 1 detected -> likely not pooled")
+            is_pooled = False
+        else:
+            is_pooled = True
+        
         payload["data"].append(
             {
             "id": target_group[i]["id"],
@@ -124,20 +143,60 @@ def upload_pcr(session, csv, didata):
             "ng_ul_pool_3": str(csv["ng_ul_pool_3"][i]),
             "Kit_name_DNA_Post_PCR": get_kit_name_dna_quantification_fc_number(csv["Assay Name"][i]),
             "Post_PCR_date": datetime.strptime(csv["Test Date"][i], "%d/%m/%Y %I:%M:%S %p").strftime("%d-%m-%Y %H:%M:%S"),
-            "Is_pooled": True,
-            "output_volume": int(target_group[i]["dna_volume"] - csv["Sample Volume (uL)"][i])
+            "Is_pooled": is_pooled,
+            "output_volume": int(target_group[i]["dna_volume"] - csv["Sample Volume (uL)"][i]),
+            "Status": 518
             }
         )
+        
+            # Status
+            # 518, 16S PCR Quantification
+            # 524, Post PCR Visualization & Clean up
     
     # print(json.dumps(payload, indent=4))
     response = session.put(f"{API_BASE_URL}/api/entities/batch", headers=get_headers(), json=payload)
     return response
 
+def helper_lib(csv, didata):
+    # a sample is missing
+    # check in "Index PCR" for target group by sample name 
+    pass
+
 def upload_lib(session, csv, didata):
+    csv = remove_standard_from_csv(csv)
     # get id and find group
     target_group = find_data_group(csv, didata)
-    
+    handle_qubit_and_didata_amount_check(csv, target_group, genomic="LIB")
     # Qubit Raw Data -> DiData Names
-    # Library Quantification
-    return
+    # Test Date -> 16S library quantification date
+    # Assay Name -> Kit Name 16S Library Quant
+    # Sample Name -> Sample ID
+    # Original Sample -> Library ng/ul
+    # Sample Volume (uL) -> Volume taken for quantification
+    
+    payload = {
+        "data": [],
+        "options": {
+            "identify_entities_by": ["id"], # how to find the row/entity you want to update
+            "upsert": False                 # what to do if it cannot find that row/entity
+        }
+    }
+    
+    for i in range(len(target_group)):
+        payload["data"].append(
+            {
+            "id": target_group[i]["id"],
+            "Library_ng_ul": str(csv["Original Sample Conc."][i]),
+            "Kit_Name_16s_Library_Quant": get_kit_name_dna_quantification_fc_number(csv["Assay Name"][i]),
+            "16S_library_quantification_date": datetime.strptime(csv["Test Date"][i], "%d/%m/%Y %I:%M:%S %p").strftime("%d-%m-%Y %H:%M:%S"),
+            "Volume_taken_for_16s_library_quantification_": int(csv["Sample Volume (uL)"][i]),
+            "Status": 530
+            }
+        )
+    
+            # Status
+            # 529, 16S Library Quantification
+            # 530, 16S Library Visualization & 2nM
+    response = session.put(f"{API_BASE_URL}/api/entities/batch", headers=get_headers(), json=payload)
+    return response
     

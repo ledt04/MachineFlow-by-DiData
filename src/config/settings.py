@@ -76,3 +76,9 @@ def get_workflow_id():
 
 def get_kit_name_dna_quantification_fc_number(name):
     return MACHINE_CONFIG["machines"][0]["kit_name_dna_quantification_fc"][name]
+
+def save_target_group():
+    pass
+
+def get_target_group():
+    pass
