@@ -77,8 +77,26 @@ def get_workflow_id():
 def get_kit_name_dna_quantification_fc_number(name):
     return MACHINE_CONFIG["machines"][0]["kit_name_dna_quantification_fc"][name]
 
-def save_target_group():
-    pass
+import json
+
+def save_target_group(group):
+    sample_dict = {item['sample_id']: item['id'] for item in group}
+    config_changed = False
+
+    for machine in MACHINE_CONFIG["machines"]:
+        if machine["display_name"] == "qubit":
+            if sample_dict not in machine["temporary_groups"]:
+                machine["temporary_groups"].append(sample_dict)
+                config_changed = True
+    
+    if config_changed:
+        try:
+            with open(MACHINE_CONFIG_PATH, 'w') as file:
+                json.dump(MACHINE_CONFIG, file, indent=4)
+        except Exception:
+            pass
+
+    return
 
 def get_target_group():
-    pass
+    return MACHINE_CONFIG["machines"][0]["temporary_groups"]

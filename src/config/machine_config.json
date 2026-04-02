@@ -17,8 +17,18 @@
                 "1X dsDNA BR": 558,
                 "1X dsDNA HS": 557
             },
-            "temporary_groups": {
-        }
+            "temporary_groups": [
+                {
+                    "TEST-001D1": 53004,
+                    "TEST-002D1": 53005,
+                    "TEST-003D1": 53006
+                },
+                {
+                    "TESTNEG-001D1": 53014,
+                    "TESTNEG-002D1": 53015,
+                    "TESTNEG-003D1": 53016
+                }
+            ]
         },
         {
             "machine_id": 1,

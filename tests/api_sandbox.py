@@ -31,16 +31,16 @@ r = s.put(f"{BASE}/api/entities/53004", headers=headers, json={
 payload1 = {
     "data": [
         {
-            "id": 53004,
-            "Status": 518
+            "id": 53112,
+            "Status": 529
         },
         {
-            "id": 53005,
-            "Status": 518
+            "id": 53113,
+            "Status": 529
         },
         {
-            "id": 53006,
-            "Status": 518
+            "id": 53114,
+            "Status": 529
         }
     ],
     "options": {
@@ -66,6 +66,10 @@ payload2 = {
         "upsert": False                 # what to do if it cannot find that row/entity
     }
 }
+
+# 85, DNA Quantification
+# 518, 16S PCR Quantification
+# 529, 16S Library Quantification
 
 r = s.put(f"{BASE}/api/entities/batch", headers=headers, json=payload1)
 

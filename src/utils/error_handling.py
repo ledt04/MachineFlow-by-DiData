@@ -52,22 +52,19 @@ def handle_find_data_group_return(group, csv):
         raise ValueError(f"No group found for: {csv["Sample Name"].iloc[0]}")
     return
 
-from src.mashines.qubit.sample_uploader import helper_lib
-
 def handle_qubit_and_didata_amount_check(csv, didata, genomic):
     if genomic == "DNA" or genomic == "LIB":
         if len(csv["Sample Name"]) == len(didata):
             print("Amount of samples in Qubit CSV matches amount of samples in DiData")
-            return
+            return True
         elif genomic == "LIB":
-            helper_lib(csv, didata)
-            return
+            return False
         else:
             raise ValueError(f"Amount of samples in Qubit CSV does not match amount of samples in DiData. CSV: {len(csv["Sample Name"])}, DiData: {len(didata)}")
     elif genomic == "PCR":
         if len(csv["Sample Name"]) == len(didata) * 3:
             print("Amount of samples in Qubit CSV matches amount of samples in DiData with 3 pools")
-            return
+            return True
         else:
             raise ValueError(f"Amount of samples in Qubit CSV does not match amount of samples in DiData with 3 pools. CSV: {len(csv["Sample Name"])}, DiData: {len(didata) * 3}")
     else:
