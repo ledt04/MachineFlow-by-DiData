@@ -1,4 +1,4 @@
-from src.config.settings import API_BASE_URL, get_kit_name_dna_quantification_fc_number, save_target_group, get_target_group
+from src.config.settings import API_BASE_URL, get_kit_name_dna_quantification_fc_number, save_target_group, get_target_group, get_state_id_by_name
 from src.utils.error_handling import handle_find_data_group_return, handle_qubit_and_didata_amount_check
 from src.utils.auth import get_headers
 from datetime import datetime
@@ -63,7 +63,7 @@ def upload_dna(session, csv, didata):
             "Kit_name_DNA_quantification_fc": get_kit_name_dna_quantification_fc_number(csv["Assay Name"][i]),
             "Quantification_date": datetime.strptime(csv["Test Date"][i], "%d/%m/%Y %I:%M:%S %p").strftime("%d-%m-%Y %H:%M:%S"),
             "output_volume": int(dna_vol - sample_vol),
-            "Status": 85
+            "Status": get_state_id_by_name("DNA Quantification")
             }
         )
         
@@ -146,7 +146,7 @@ def upload_pcr(session, csv, didata):
             "Post_PCR_date": datetime.strptime(csv["Test Date"][i], "%d/%m/%Y %I:%M:%S %p").strftime("%d-%m-%Y %H:%M:%S"),
             "Is_pooled": is_pooled,
             "output_volume": int(target_group[i]["dna_volume"] - csv["Sample Volume (uL)"][i]),
-            "Status": 518
+            "Status": get_state_id_by_name("16S PCR Quantification")
             }
         )
         
@@ -232,7 +232,7 @@ def upload_lib(session, csv, didata):
             "Kit_Name_16s_Library_Quant": get_kit_name_dna_quantification_fc_number(csv["Assay Name"][i]),
             "16S_library_quantification_date": datetime.strptime(csv["Test Date"][i], "%d/%m/%Y %I:%M:%S %p").strftime("%d-%m-%Y %H:%M:%S"),
             "Volume_taken_for_16s_library_quantification_": int(csv["Sample Volume (uL)"][i]),
-            "Status": 529
+            "Status": get_state_id_by_name("16S Library Quantification")
             }
         )
     

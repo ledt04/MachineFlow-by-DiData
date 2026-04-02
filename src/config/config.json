@@ -42,5 +42,22 @@
                 "lib": ""
             }
         }
-    ]
+    ],
+    "didata": {
+        "state_id": {
+            "16S Sample Reg & DNA extraction": 62,
+            "DNA Quantification": 85,
+            "16S PCR": 91,
+            "16S PCR Quantification": 518,
+            "Post PCR Visualization & Clean up": 524,
+            "Index PCR": 527,
+            "Index PCR Clean up": 528,
+            "16S Library Quantification": 529,
+            "16S Library Visualization & 2nM": 530,
+            "Sample Ready for Pooling": 538,
+            "Miseq Sample Sheet": 555,
+            "Sequencing QC": 540,
+            "Bioinformatics": 1567
+        }
+    }
 }

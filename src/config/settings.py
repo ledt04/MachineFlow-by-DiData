@@ -10,20 +10,20 @@ load_dotenv()
 PROJECT = os.getenv("PROJECT")
 WORKFLOW = os.getenv("WORKFLOW")
 API_BASE_URL = os.getenv("API_BASE_URL")
-MACHINE_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "machine_config.json")
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), "config.json")
 _workflow_id = None
 
-def load_machine_config():
-    with open(MACHINE_CONFIG_PATH, 'r') as file:
+def load_CONFIG_PATH():
+    with open(CONFIG_PATH, 'r') as file:
         config_data = json.load(file)
     return config_data
 
-MACHINE_CONFIG = load_machine_config()
+CONFIG_PATH = load_CONFIG_PATH()
 
 def get_local_directory(machine_id):
     project_root = Path(__file__).resolve().parents[2]
 
-    for machine in MACHINE_CONFIG["machines"]:
+    for machine in CONFIG_PATH["machines"]:
         if machine["machine_id"] == machine_id:
             qubit_directory = machine["source_config"]["local_directory"]
             full_directory = os.path.join(project_root, qubit_directory)
@@ -31,19 +31,19 @@ def get_local_directory(machine_id):
     return None
 
 def get_qubit_id():
-    for machine in MACHINE_CONFIG["machines"]:
+    for machine in CONFIG_PATH["machines"]:
         if machine["display_name"] == "qubit":
             return machine["machine_id"]
     return None
 
 def get_fragmentanalyzer_id():
-    for machine in MACHINE_CONFIG["machines"]:
+    for machine in ["machines"]:
         if machine["display_name"] == "fragmentanalyzer":
             return machine["machine_id"]
     return None
 
 def get_qubit_genomics(genomic):
-    for machine in MACHINE_CONFIG["machines"]:
+    for machine in CONFIG_PATH["machines"]:
         if machine["display_name"] == "qubit":
             return machine["api_config"][genomic]
     return None
@@ -75,7 +75,7 @@ def get_workflow_id():
     return _workflow_id
 
 def get_kit_name_dna_quantification_fc_number(name):
-    return MACHINE_CONFIG["machines"][0]["kit_name_dna_quantification_fc"][name]
+    return CONFIG_PATH["machines"][0]["kit_name_dna_quantification_fc"][name]
 
 import json
 
@@ -83,7 +83,7 @@ def save_target_group(group):
     sample_dict = {item['sample_id']: item['id'] for item in group}
     config_changed = False
 
-    for machine in MACHINE_CONFIG["machines"]:
+    for machine in CONFIG_PATH["machines"]:
         if machine["display_name"] == "qubit":
             if sample_dict not in machine["temporary_groups"]:
                 machine["temporary_groups"].append(sample_dict)
@@ -91,12 +91,15 @@ def save_target_group(group):
     
     if config_changed:
         try:
-            with open(MACHINE_CONFIG_PATH, 'w') as file:
-                json.dump(MACHINE_CONFIG, file, indent=4)
+            with open(CONFIG_PATH, 'w') as file:
+                json.dump(CONFIG_PATH, file, indent=4)
         except Exception:
             pass
 
     return
 
 def get_target_group():
-    return MACHINE_CONFIG["machines"][0]["temporary_groups"]
+    return CONFIG_PATH["machines"][0]["temporary_groups"]
+
+def get_state_id_by_name(name):
+    return CONFIG_PATH["didata"]["state_id"].get(name)
