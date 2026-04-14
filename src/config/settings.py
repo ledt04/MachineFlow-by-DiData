@@ -37,7 +37,7 @@ def get_qubit_id():
     return None
 
 def get_fragmentanalyzer_id():
-    for machine in ["machines"]:
+    for machine in CONFIG_PATH["machines"]:
         if machine["display_name"] == "fragmentanalyzer":
             return machine["machine_id"]
     return None

@@ -21,17 +21,27 @@ def get_entities(session, state_ids):
     response = session.get(f"{API_BASE_URL}/api/entities", headers=get_headers())
     handle_get_entities_responses(response)
     data = {"states": []}
-    
+
     for state_id in state_ids:
         samples = []
         for entity in response.json():
             if entity.get("Status") == state_id:
-                samples.append({
+                sample = ({
                     "sample_id": entity.get("Sample__Id"),
                     "id": entity.get("id"),
                     "created_at": entity.get("created_at"),
-                    "dna_volume": entity.get("output_volume")                
-                    })
+                    "dna_volume": entity.get("output_volume")               
+                })
+                
+                # for PCR Quantification
+                if entity.get("ng_ul") is not None:
+                    sample["pool1"] = entity.get("ng_ul")
+                if entity.get("ng_ul_pool_2") is not None:
+                    sample["pool2"] = entity.get("ng_ul_pool_2")
+                if entity.get("ng_ul_pool_3") is not None:
+                    sample["pool3"] = entity.get("ng_ul_pool_3")
+                    
+                samples.append(sample)
         if samples:
             data["states"].append({
                 "state_id": state_id,

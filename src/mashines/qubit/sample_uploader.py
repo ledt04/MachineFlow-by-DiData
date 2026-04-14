@@ -20,7 +20,7 @@ def find_data_group(csv, didata):
     return target_group
 
 def remove_standard_from_csv(csv):
-    std_re = re.compile(r"^(?:\d*)(std|stnd|stdrd|stndrd|stand|stad|standard)[_\-\s]*(\d*)$", re.IGNORECASE)
+    std_re = re.compile(r"^(?:\d*)(std|std|sntdrd|stndrd|stand|stad|standard)[_\-\s]*(\d*)$", re.IGNORECASE)
     
     # remove standard from df
     for i, sample in enumerate(csv["Sample Name"]):
@@ -74,7 +74,16 @@ def upload_dna(session, csv, didata):
     response = session.put(f"{API_BASE_URL}/api/entities/batch", headers=get_headers(), json=payload)
     return response
 
-def helper_pcr(csv, didata):
+def helper_monolithic_pcr(csv, didata):
+    
+    # New Logic
+    # Check if didata sample have any pools in there
+    # multiply amount of samples in didata times 3
+    # how many samples in didata of the ng/ul, ng/ul pool2, ng/ul pool3 are existing?
+    # total amount = amount didata * 3
+    # Example: if 2 already exist in didata, and total amount is 9, we know theres 3 samples for each pool
+    # so we know the first sample of the csv is the number 3 of the ng/ul pool1
+    
     # check if 3 diffrent pools exist
     didata_sample_count = len(didata)
     csv_sample_count = len(csv["Sample Name"])
@@ -101,26 +110,72 @@ def helper_pcr(csv, didata):
     
     return csv.iloc[:didata_sample_count]
 
+def helper_modular_pcr(csv, didata):
+    # Implementation for modular PCR handling
+    # Calculate Total amount of samples of all 3 pools -> DiData Sample Quantity * 3
+    # Get the Quantity of all Pools of all Samples that have a Value -> get pool1, pool2, pool3 quantity
+    # if Quantity of Values > 2/3 of Total amount -> Quantity of Values - 2/3 of Total Amount = Position of Sample in Pool 3
+    # if Quantity of Values > 1/3 of Total amount -> Quantity of Values - 1/3 of Total Amount = Position of Sample in Pool 2
+    # else -> Position of Sample in Pool 1
+    # return new csv while empty spots are filled with 0 or None
+    
+    didata_sample_count = len(didata)
+    csv_sample_count = len(csv["Sample Name"])
+    total_pools = didata_sample_count * 3
+    
+    # if pool data even exist
+    quant_pool_didata = sum(
+        1 for sample in didata 
+        if sample.get("pool1") or sample.get("pool2") or sample.get("pool3")
+    )
+    
+    print(f"Qubit Sample Quantitiy: {csv_sample_count}")
+    print(f"DiData Sample Quantitiy: {didata_sample_count}")
+    print(f"Total Pools: {total_pools}")
+    print(f"Quantity Pools in DiData: {quant_pool_didata}")
+    
+    # Decide where filling starts
+    if quant_pool_didata > (2 / 3) * total_pools:
+        print("Filling in Data starting from Pool 3")
+        start_pool = 2
+        start_row = quant_pool_didata - (2 * didata_sample_count)
+    elif quant_pool_didata > (1 / 3) * total_pools:
+        print("Filling in Data starting from Pool 2")
+        start_pool = 1
+        start_row = quant_pool_didata - didata_sample_count
+    else:
+        print("Filling in Data starting from Pool 1")
+        start_pool = 0
+        start_row = quant_pool_didata
+
+    # Fill values starting from the correct pool and row
+    for i, value in enumerate(csv["Original Sample Conc."]):
+        absolute_pos = start_row + i
+        pool_group = start_pool + (absolute_pos // didata_sample_count)
+        row_idx = absolute_pos % didata_sample_count
+
+        match pool_group:
+            case 0:
+                column = "ng_ul"
+            case 1:
+                column = "ng_ul_pool_2"
+            case 2:
+                column = "ng_ul_pool_3"
+            case _:
+                column = "unknown_pool"
+
+        if column != "unknown_pool":
+            csv.at[row_idx, column] = value
+
+    return csv.iloc[:didata_sample_count]
+
 def upload_pcr(session, csv, didata):
     csv = remove_standard_from_csv(csv)
     # get id and find group
     target_group = find_data_group(csv, didata)
-    handle_qubit_and_didata_amount_check(csv, target_group, genomic="PCR")
-    csv = helper_pcr(csv, target_group)
+    print(target_group)
     save_target_group(target_group) # Save the target group for later use in LIB uploads
-    # Qubit Raw Data -> DiData Names
-    # PCR Quantification
-    # Test Date -> Post PCR date
-    # Assay Name -> Kit Name DNA Post PCR
-    # Always 3 different pools, Always. -> could be more Excel files
-
-    # Add in Post PCR Visualization % CLean up for Entities
-    # in case -> no pooled -> must be repeated
-    # if value under 1 -> not pooled
-    is_pooled = True
-
-    # Option: Create Action for Is Pooled or not mechanism
-
+    
     payload = {
         "data": [],
         "options": {
@@ -129,31 +184,53 @@ def upload_pcr(session, csv, didata):
         }
     }
     
-    for i in range(len(target_group)):
-        if csv["ng_ul"][i] < 1 or csv["ng_ul_pool_2"][i] < 1 or csv["ng_ul_pool_3"][i] < 1:
-            print("Value under 1 detected -> likely not pooled")
-            is_pooled = False
-        else:
-            is_pooled = True
+    if handle_qubit_and_didata_amount_check(csv, target_group, genomic="PCR"):   
+        csv = helper_monolithic_pcr(csv, target_group)
         
-        payload["data"].append(
-            {
+        # Qubit Raw Data -> DiData Names
+        # PCR Quantification
+        # Test Date -> Post PCR date
+        # Assay Name -> Kit Name DNA Post PCR
+        # Always 3 different pools, Always. -> could be more Excel files
+
+        # Add in Post PCR Visualization % CLean up for Entities
+        # in case -> no pooled -> must be repeated
+        # if value under 1 -> not pooled
+    else:
+        csv = helper_modular_pcr(csv, target_group)
+        print(csv)
+        # the csv will be the same for universal use, but the ones that are missing values will have a "None"
+        # So only if the pool has a value it will be added to the payload, otherwise it will be skipped and not uploaded to DiData, so we can handle both modular and monolithic PCR with the same upload function and just different helper functions to rearrange the csv accordingly
+
+    is_pooled = True
+
+    # Option: Create Action for Is Pooled or not mechanism -> done
+    
+    for i in range(len(target_group)):
+        if csv["ng_ul"][i] and csv["ng_ul_pool_2"][i] and csv["ng_ul_pool_3"][i]:
+            if csv["ng_ul"][i] < 1 or csv["ng_ul_pool_2"][i] < 1 or csv["ng_ul_pool_3"][i] < 1:
+                print("Value under 1 detected -> likely not pooled")
+                is_pooled = False
+            else:
+                is_pooled = True
+            
+        entry = {
             "id": target_group[i]["id"],
-            "ng_ul": str(csv["ng_ul"][i]),
-            "ng_ul_pool_2": str(csv["ng_ul_pool_2"][i]),
-            "ng_ul_pool_3": str(csv["ng_ul_pool_3"][i]),
             "Kit_name_DNA_Post_PCR": get_kit_name_dna_quantification_fc_number(csv["Assay Name"][i]),
             "Post_PCR_date": datetime.strptime(csv["Test Date"][i], "%d/%m/%Y %I:%M:%S %p").strftime("%d-%m-%Y %H:%M:%S"),
             "Is_pooled": is_pooled,
             "output_volume": int(target_group[i]["dna_volume"] - csv["Sample Volume (uL)"][i]),
             "Status": get_state_id_by_name("16S PCR Quantification")
-            }
-        )
-        
-            # Status
-            # 518, 16S PCR Quantification
-            # 524, Post PCR Visualization & Clean up
-    
+        }
+        if str(csv["ng_ul"][i]):
+            entry["ng_ul"] = str(csv["ng_ul"][i])
+        if str(csv["ng_ul_pool_2"][i]):
+            entry["ng_ul_pool_2"] = str(csv["ng_ul_pool_2"][i])
+        if str(csv["ng_ul_pool_3"][i]):
+            entry["ng_ul_pool_3"] = str(csv["ng_ul_pool_3"][i])
+            
+        payload["data"].append(entry)
+
     # print(json.dumps(payload, indent=4))
     response = session.put(f"{API_BASE_URL}/api/entities/batch", headers=get_headers(), json=payload)
     return response
@@ -187,18 +264,19 @@ def helper_lib(target_group, didata):
     # print(get_base_name(didata[0]['sample_id']))
     # print(get_base_name(list(get_target_group()[0])[0]))
     
-    old_target_group = find_match(target_group)
-    old_ids, start_id = list(old_target_group[0].values())
+    old_target_group, start_id = find_match(target_group)
+    old_ids = list(old_target_group.values())
     new_ids = [sample['id'] for group in didata for sample in group]
     
     # since old ids and new ids have completly diffrent id, we have to look by algorithm
-    for i in range(len(old_ids)):
-        old_id_diff = abs(old_ids[i] - old_ids[i+1]) if i+1 < len(old_ids) else None
+    for i in range(len(old_ids)-1):
+        old_id_diff = abs(old_ids[i] - old_ids[i+1])
         if start_id + old_id_diff in new_ids:
             print(f"Found missing ID: {start_id + old_id_diff}")
             target_group.append({
                 "id": start_id + old_id_diff
             })
+        start_id += old_id_diff
     # Find out which position of the group is missing and then regroup the Library IDs from DiData
     print(f"Updated Target Group: {target_group}")
     return target_group
@@ -207,6 +285,7 @@ def upload_lib(session, csv, didata):
     csv = remove_standard_from_csv(csv)
     # get id and find group
     target_group = find_data_group(csv, didata)
+    print(f"Initial Target Group: {target_group}")
     if not (handle_qubit_and_didata_amount_check(csv, target_group, genomic="LIB")):
         target_group = helper_lib(target_group, didata)
     # Qubit Raw Data -> DiData Names

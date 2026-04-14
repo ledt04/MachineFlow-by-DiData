@@ -20,27 +20,20 @@ headers = {
     "Accept":               "application/json",
     "Didata-Project-Id":    "1"
 }
-'''
-r = s.put(f"{BASE}/api/entities/53004", headers=headers, json={
-    "Extracted_DNA_ng_ul": "15.4",
-    "Kit_name_DNA_quantification_fc": 559,
-    "Quantification_date": "25-02-2025 10:36:53",
-    "output_volume" : 40
-})
-'''
+
 payload1 = {
     "data": [
         {
-            "id": 53112,
-            "Status": 529
+            "id": 55127,
+            "Status": 518,
         },
         {
-            "id": 53113,
-            "Status": 529
+            "id": 55128,
+            "Status": 518
         },
         {
-            "id": 53114,
-            "Status": 529
+            "id": 55129,
+            "Status": 518
         }
     ],
     "options": {
@@ -52,13 +45,28 @@ payload1 = {
 payload2 = {
     "data": [
         {
-            "id": 53004
+            "id": 55127,
+            "Extracted_DNA_ng_ul": None,
+            "Kit_name_DNA_quantification_fc": None,
+            "Quantification_date": None,
+            "output_volume": 100,
+            "Status": 85,
         },
         {
-            "id": 53005
+            "id": 55128,
+            "Extracted_DNA_ng_ul": None,
+            "Kit_name_DNA_quantification_fc": None,
+            "Quantification_date": None,
+            "output_volume": 100,
+            "Status": 85
         },
         {
-            "id": 53006
+            "id": 55129,
+            "Extracted_DNA_ng_ul": None,
+            "Kit_name_DNA_quantification_fc": None,
+            "Quantification_date": None,
+            "output_volume": 100,
+            "Status": 85
         }
     ],
     "options": {
@@ -67,17 +75,59 @@ payload2 = {
     }
 }
 
+payload3 = {
+    "data": [
+        {
+            "id": 55127,
+            "ng_ul": None,
+            "ng_ul_pool_2": None,
+            "ng_ul_pool_3": None,
+            "Is_pooled": None,
+            "Kit_Name_Post_PCR_Visualization": None,
+            "Post_PCR_date": None,
+            "output_volume": 98,
+            "Status": 518
+        },
+        {
+            "id": 55128,
+            "ng_ul": None,
+            "ng_ul_pool_2": None,
+            "ng_ul_pool_3": None,
+            "Is_pooled": None,
+            "Kit_Name_Post_PCR_Visualization": None,
+            "Post_PCR_date": None,
+            "output_volume": 98,
+            "Status": 518
+        },
+        {
+            "id": 55129,
+            "ng_ul": None,
+            "ng_ul_pool_2": None,
+            "ng_ul_pool_3": None,
+            "Is_pooled": None,
+            "Kit_Name_Post_PCR_Visualization": None,
+            "Post_PCR_date": None,
+            "output_volume": 98,
+            "Status": 518
+        }
+    ],
+    "options": {
+        "identify_entities_by": ["id"], # how to find the row/entity you want to update
+        "upsert": False                 # what to do if it cannot find that row/entity
+    }
+}
+
+
 # 85, DNA Quantification
 # 518, 16S PCR Quantification
 # 529, 16S Library Quantification
 
-r = s.put(f"{BASE}/api/entities/batch", headers=headers, json=payload1)
-
+r = s.put(f"{BASE}/api/entities/batch", headers=headers, json=payload3)
 
 print(r.status_code)
 print(r.json())
 
-s.post(f"{BASE}/api/logout", headers=headers)
+
 '''
 Kit_name_DNA_quantification_fc
 559 -> Qubit ssDNA Assay Kit
@@ -86,46 +136,3 @@ Kit_name_DNA_quantification_fc
 
 '''
 
-
-
-'''
-r = s.get(f"{BASE}/api/entities", headers=headers)
-
-samples = []
-
-for entity in r.json():
-    if entity.get("Status") == 85:
-        samples.append({
-            "sample_name": entity.get("Sample__Id"),
-            "sample_id": int(entity.get("id")),  # make sure it's numeric
-            "created_at": entity.get("created_at")
-        })
-
-# Sort by sample_id first
-samples = sorted(samples, key=lambda x: x["sample_id"])
-
-grouped_samples = []
-current_group = []
-
-for sample in samples:
-    if not current_group:
-        current_group.append(sample)
-    else:
-        prev_id = current_group[-1]["sample_id"]
-        curr_id = sample["sample_id"]
-
-        if curr_id - prev_id == 1:
-            current_group.append(sample)
-        else:
-            grouped_samples.append(current_group)
-            current_group = [sample]
-
-# Add the last group
-if current_group:
-    grouped_samples.append(current_group)
-
-# Example print showing both sample name and ID
-for i, group in enumerate(grouped_samples, 1):
-    sample_info = [(x['sample_name'], x['sample_id']) for x in group]
-    print(f"Group {i}: {sample_info}")
-    '''

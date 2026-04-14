@@ -66,6 +66,8 @@ def handle_qubit_and_didata_amount_check(csv, didata, genomic):
             print("Amount of samples in Qubit CSV matches amount of samples in DiData with 3 pools")
             return True
         else:
-            raise ValueError(f"Amount of samples in Qubit CSV does not match amount of samples in DiData with 3 pools. CSV: {len(csv["Sample Name"])}, DiData: {len(didata) * 3}")
+            # could be in multiple CSV Files, use modular Methode
+            print("Amount of samples in Qubit CSV does not match amount of samples in DiData with 3 pools, checking for modularity")
+            return False
     else:
         raise ValueError(f"Unknown genomic type: {genomic}")
