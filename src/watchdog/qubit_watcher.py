@@ -7,22 +7,25 @@ class Handler(FileSystemEventHandler):
     def __init__(self):
         self.file_created = False
         self.file_modified = False
+        self.latest_file_path = None
     
     def on_created(self, event):
-        print(f"File created: {event.src_path}")
+        print(f"File created: {Path(event.src_path).name}")
         if not event.is_directory:
             self.file_created = True
+            self.latest_file_path = event.src_path
 
     def on_modified(self, event):
-        print(f"File modified: {event.src_path}")
+        print(f"File modified: {Path(event.src_path).name}")
         if not event.is_directory:
             self.file_modified = True
+            self.latest_file_path = event.src_path
 
     def on_deleted(self, event):
-        print(f"File deleted: {event.src_path}")
+        print(f"File deleted: {Path(event.src_path).name}")
 
     def on_moved(self, event):
-        print(f"File moved: {event.src_path} -> {event.dest_path}")
+        print(f"File moved: {Path(event.src_path).name} -> {Path(event.dest_path).name}")
 
 def watch_qubit(handler: Handler):
     observer = Observer()

@@ -59,7 +59,7 @@ def upload_dna(session, csv, didata):
         payload["data"].append(
             {
             "id": target_group[i]["id"],
-            "Extracted_DNA_ng_ul": str(csv["Original Sample Conc."][i]),
+            "Extracted_DNA_ng_ul": float(csv["Original Sample Conc."][i]),
             "Kit_name_DNA_quantification_fc": get_kit_name_dna_quantification_fc_number(csv["Assay Name"][i]),
             "Quantification_date": datetime.strptime(csv["Test Date"][i], "%d/%m/%Y %I:%M:%S %p").strftime("%d-%m-%Y %H:%M:%S"),
             "output_volume": int(dna_vol - sample_vol),
@@ -90,11 +90,10 @@ def helper_monolithic_pcr(csv, didata):
     if csv_sample_count / didata_sample_count == 3:
         print(f"Qubit Sample Quantitiy: {csv_sample_count}")
         print(f"DiData Sample Quantitiy: {didata_sample_count}")
-    
 
     for i, value in enumerate(csv["Original Sample Conc."]):
-        pool_group = i // 3 
-        row_idx = i % 3
+        pool_group = i // didata_sample_count # example: i = 0,1,2 -> pool_group = 0 -> pool 1, i = 3,4,5 -> pool_group = 1 -> pool 2, i = 6,7,8 -> pool_group = 2 -> pool 3
+        row_idx = i % didata_sample_count # example: i = 0,3,6 -> row_idx = 0 -> first sample of the group, i = 1,4,7 -> row_idx = 1 -> second sample of the group, i = 2,5,8 -> row_idx = 2 -> third sample of the group
 
         match pool_group:
             case 0:
@@ -120,39 +119,40 @@ def helper_modular_pcr(csv, didata):
     # return new csv while empty spots are filled with 0 or None
     
     didata_sample_count = len(didata)
-    csv_sample_count = len(csv["Sample Name"])
-    total_pools = didata_sample_count * 3
     
-    # if pool data even exist
-    quant_pool_didata = sum(
-        1 for sample in didata 
-        if sample.get("pool1") or sample.get("pool2") or sample.get("pool3")
+    def has_value(v):
+        return v is not None and v != ""
+    
+    # Count ALL existing pool values on the server
+    filled_slots = sum(
+        1
+        for sample in didata
+        for key in ("pool1", "pool2", "pool3")
+        if has_value(sample.get(key))
     )
     
-    print(f"Qubit Sample Quantitiy: {csv_sample_count}")
-    print(f"DiData Sample Quantitiy: {didata_sample_count}")
-    print(f"Total Pools: {total_pools}")
-    print(f"Quantity Pools in DiData: {quant_pool_didata}")
+    # Debug
+    print(f"DiData Sample Quantity: {didata_sample_count}")
+    print(f"Total Pools: {didata_sample_count * 3}")
+    print(f"Already filled slots in DiData: {filled_slots}")
     
-    # Decide where filling starts
-    if quant_pool_didata > (2 / 3) * total_pools:
-        print("Filling in Data starting from Pool 3")
-        start_pool = 2
-        start_row = quant_pool_didata - (2 * didata_sample_count)
-    elif quant_pool_didata > (1 / 3) * total_pools:
-        print("Filling in Data starting from Pool 2")
-        start_pool = 1
-        start_row = quant_pool_didata - didata_sample_count
-    else:
-        print("Filling in Data starting from Pool 1")
-        start_pool = 0
-        start_row = quant_pool_didata
+    # Build output with existing server data already in it
+    for col in ["ng_ul", "ng_ul_pool_2", "ng_ul_pool_3"]:
+        if col not in csv.columns:
+            csv[col] = None
 
-    # Fill values starting from the correct pool and row
+    for row_idx, sample in enumerate(didata):
+        if row_idx >= len(csv):
+            break
+        csv.at[row_idx, "ng_ul"] = sample.get("pool1")
+        csv.at[row_idx, "ng_ul_pool_2"] = sample.get("pool2")
+        csv.at[row_idx, "ng_ul_pool_3"] = sample.get("pool3")
+
+    # Fill new incoming values starting exactly after the already-filled slots
     for i, value in enumerate(csv["Original Sample Conc."]):
-        absolute_pos = start_row + i
-        pool_group = start_pool + (absolute_pos // didata_sample_count)
-        row_idx = absolute_pos % didata_sample_count
+        absolute_i = filled_slots + i
+        pool_group = absolute_i // didata_sample_count
+        row_idx = absolute_i % didata_sample_count
 
         match pool_group:
             case 0:
@@ -173,7 +173,6 @@ def upload_pcr(session, csv, didata):
     csv = remove_standard_from_csv(csv)
     # get id and find group
     target_group = find_data_group(csv, didata)
-    print(target_group)
     save_target_group(target_group) # Save the target group for later use in LIB uploads
     
     payload = {
@@ -198,7 +197,6 @@ def upload_pcr(session, csv, didata):
         # if value under 1 -> not pooled
     else:
         csv = helper_modular_pcr(csv, target_group)
-        print(csv)
         # the csv will be the same for universal use, but the ones that are missing values will have a "None"
         # So only if the pool has a value it will be added to the payload, otherwise it will be skipped and not uploaded to DiData, so we can handle both modular and monolithic PCR with the same upload function and just different helper functions to rearrange the csv accordingly
 
@@ -208,7 +206,7 @@ def upload_pcr(session, csv, didata):
     
     for i in range(len(target_group)):
         if csv["ng_ul"][i] and csv["ng_ul_pool_2"][i] and csv["ng_ul_pool_3"][i]:
-            if csv["ng_ul"][i] < 1 or csv["ng_ul_pool_2"][i] < 1 or csv["ng_ul_pool_3"][i] < 1:
+            if float(csv["ng_ul"][i]) < 1 or float(csv["ng_ul_pool_2"][i]) < 1 or float(csv["ng_ul_pool_3"][i]) < 1:
                 print("Value under 1 detected -> likely not pooled")
                 is_pooled = False
             else:
@@ -222,12 +220,14 @@ def upload_pcr(session, csv, didata):
             "output_volume": int(target_group[i]["dna_volume"] - csv["Sample Volume (uL)"][i]),
             "Status": get_state_id_by_name("16S PCR Quantification")
         }
-        if str(csv["ng_ul"][i]):
-            entry["ng_ul"] = str(csv["ng_ul"][i])
-        if str(csv["ng_ul_pool_2"][i]):
-            entry["ng_ul_pool_2"] = str(csv["ng_ul_pool_2"][i])
-        if str(csv["ng_ul_pool_3"][i]):
-            entry["ng_ul_pool_3"] = str(csv["ng_ul_pool_3"][i])
+        if csv["ng_ul"][i] is not None and csv["ng_ul"][i] != "":
+            entry["ng_ul"] = float(csv["ng_ul"][i])
+
+        if csv["ng_ul_pool_2"][i] is not None and csv["ng_ul_pool_2"][i] != "":
+            entry["ng_ul_pool_2"] = float(csv["ng_ul_pool_2"][i])
+
+        if csv["ng_ul_pool_3"][i] is not None and csv["ng_ul_pool_3"][i] != "":
+            entry["ng_ul_pool_3"] = float(csv["ng_ul_pool_3"][i])
             
         payload["data"].append(entry)
 
@@ -307,7 +307,7 @@ def upload_lib(session, csv, didata):
         payload["data"].append(
             {
             "id": target_group[i]["id"],
-            "Library_ng_ul": str(csv["Original Sample Conc."][i]),
+            "Library_ng_ul": float(csv["Original Sample Conc."][i]),
             "Kit_Name_16s_Library_Quant": get_kit_name_dna_quantification_fc_number(csv["Assay Name"][i]),
             "16S_library_quantification_date": datetime.strptime(csv["Test Date"][i], "%d/%m/%Y %I:%M:%S %p").strftime("%d-%m-%Y %H:%M:%S"),
             "Volume_taken_for_16s_library_quantification_": int(csv["Sample Volume (uL)"][i]),

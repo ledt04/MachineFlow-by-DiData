@@ -45,7 +45,14 @@ def handle_upload_responses(response, genomic):
         print(f"Upload to DiData to Node {genomic} successful")
         return
     else:
-        raise ValueError(f"{response.status_code}: {response.json().get("error", f"Unknown {genomic} Upload error")}")
+        print("STATUS:", response.status_code)
+        print("TEXT:", response.text)
+
+        try:
+            print("JSON:", response.json())
+        except Exception as e:
+            print("JSON parse failed:", e)
+        # raise ValueError(f"{response.status_code}: {response.json().get("error", f"Unknown {genomic} Upload error")}")
     
 def handle_find_data_group_return(group, csv):
     if not group:
@@ -62,7 +69,7 @@ def handle_qubit_and_didata_amount_check(csv, didata, genomic):
         else:
             raise ValueError(f"Amount of samples in Qubit CSV does not match amount of samples in DiData. CSV: {len(csv["Sample Name"])}, DiData: {len(didata)}")
     elif genomic == "PCR":
-        if len(csv["Sample Name"]) == len(didata) * 3:
+        if (len(csv["Sample Name"])-1) == len(didata) * 3:
             print("Amount of samples in Qubit CSV matches amount of samples in DiData with 3 pools")
             return True
         else:

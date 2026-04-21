@@ -2,6 +2,8 @@ import sys
 import os
 import time
 
+from pathlib import Path
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 from src.watchdog.qubit_watcher import watch_qubit, stop_watch_qubit, Handler as QubitHandler
@@ -27,9 +29,16 @@ def main():
         while True:
             if qubit_handler.file_created:
                 qubit_handler.file_created = False
+                file_path = Path(qubit_handler.latest_file_path)
+                print(f"Processing file: {file_path.name}")
                 session = login()
-                qubit_main(session)
-                logout(session)
+                try:
+                    qubit_main(session)
+                    if file_path.exists():
+                        print(f"Deleting file: {file_path.name}")
+                        file_path.unlink()  # Delete the file after processing
+                finally:
+                    logout(session)
 
             if fragment_handler.file_created:
                 fragment_handler.file_created = False
