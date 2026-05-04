@@ -1,0 +1,97 @@
+1, A1,n,,BiopsyL2928,,A1,Biopsy_qPCR_SwabComp_pooledlib,,A1,Biopsy_qPCR_SwabComp_pooledlib
+2, A2,n,,BiopsyL2929,,A2,P011_w-1,,A2,P011_w-1
+3, A3,n,,BiopsyL2930,,A3,P011_w0,,A3,P011_w0
+4, A4,n,,BiopsyL2931,,A4,P011_w8,,A4,P011_w8
+5, A5,n,,BiopsyL2932,,A5,P011_52,,A5,P011_52
+6, A6,n,,BiopsyL2933,,A6,n,,A6,n
+7, A7,n,,BiopsyL2934,,A7,n,,A7,n
+8, A8,n,,BiopsyL2935,,A8,n,,A8,n
+9, A9,n,,BiopsyL2936,,A9,n,,A9,n
+10, A10,n,,BiopsyL2937,,A10,n,,A10,n
+11, A11,n,,BiopsyL2938,,A11,n,,A11,n
+12, A12,n,,BiopsyL2939,,A12,Ladder,,A12,n
+13,B1,n,,BiopsyL2940,,B1,rpoB_300_1,,B1,rpoB_300_1
+14,B2,n,,BiopsyL2941,,B2,rpoB_500_1,,B2,rpoB_500_1
+15,B3,n,,BiopsyL2942,,B3,rpoB_600_1,,B3,rpoB_600_1
+16,B4,n,,BiopsyL2943,,B4,rpoB_800_1,,B4,rpoB_800_1
+17,B5,n,,BiopsyL2944,,B5,rpoB_300_2,,B5,rpoB_300_2
+18,B6,n,,BiopsyL2945,,B6,rpoB_500_2,,B6,rpoB_500_2
+19, B7,n,,BiopsyL2946,,B7,rpoB_600_2,,B7,rpoB_600_2
+20,B8,n,,BiopsyL2947,,B8,rpoB_800_2,,B8,rpoB_800_2
+21,B9,n,,BiopsyL2948,,B9,rpoB_300_3,,B9,rpoB_300_3
+22, B10,n,,BiopsyL2949,,B10,rpoB_500_3,,B10,rpoB_500_3
+23,B11,n,,BiopsyL2950,,B11,rpoB_600_3,,B11,rpoB_600_3
+24,B12,n,,BiopsyL2951,,B12,Ladder,,B12,rpoB_800_3
+25,C1,n,,BiopsyL2952,,C1,secA_300_1,,C1,secA_300_1
+26,C2,n,,BiopsyL2953,,C2,secA_500_1,,C2,secA_500_1
+27,C3,n,,BiopsyL2954,,C3,secA_600_1,,C3,secA_600_1
+28,C4,n,,BiopsyL2955,,C4,secA_800_1,,C4,secA_800_1
+29,C5,n,,BiopsyL2956,,C5,secA_300_2,,C5,secA_300_2
+30,C6,n,,BiopsyL2957,,C6,secA_500_2,,C6,secA_500_2
+31,C7,n,,BiopsyL2958,,C7,secA_600_2,,C7,secA_600_2
+32,C8,n,,BiopsyL2959,,C8,secA_800_2,,C8,secA_800_2
+33,C9,n,,BiopsyL2960,,C9,secA_300_3,,C9,secA_300_3
+34,C10,n,,BiopsyL2961,,C10,secA_500_3,,C10,secA_500_3
+35,C11,n,,BiopsyL2962,,C11,secA_600_3,,C11,secA_600_3
+36,C12,n,,BiopsyL2963,,C12,Ladder,,C12,secA_800_3
+37,D1,n,,BiopsyL2964,,D1,oxqA_300_1,,D1,oxqA_300_1
+38,D2,n,,BiopsyL2965,,D2,oxqA_500_1,,D2,oxqA_500_1
+39,D3,n,,BiopsyL2966,,D3,oxqA_600_1,,D3,oxqA_600_1
+40,D4,n,,BiopsyL2967,,D4,oxqA_800_1,,D4,oxqA_800_1
+41,D5,n,,BiopsyL2968,,D5,oxqA_300_2,,D5,oxqA_300_2
+42,D6,n,,BiopsyL2969,,D6,oxqA_500_2,,D6,oxqA_500_2
+43,D7,n,,BiopsyL2970,,D7,oxqA_600_2,,D7,oxqA_600_2
+44,D8,n,,BiopsyL2971,,D8,oxqA_800_2,,D8,oxqA_800_2
+45,D9,n,,BiopsyL2972,,D9,oxqA_300_3,,D9,oxqA_300_3
+46,D10,n,,BiopsyL2973,,D10,oxqA_500_3,,D10,oxqA_500_3
+47,D11,n,,Blank,,D11,Blank,,D11,Blank
+48,D12,n,,Ladder,,D12,Ladder,,D12,Ladder
+49,E1,Nagasin2nML2457,,BiopsyL2974,,E1,oxqB_300_1,,E1,oxqB_300_1
+50,E2,Nagasin2nML2458,,BiopsyL2975,,E2,oxqB_500_1,,E2,oxqB_500_1
+51,E3,Nagasin2nML2459,,BiopsyL2976,,E3,oxqB_600_1,,E3,oxqB_600_1
+52,E4,Nagasin2nML2460,,BiopsyL2977,,E4,oxqB_800_1,,E4,oxqB_800_1
+53,E5,Nagasin2nML2461,,BiopsyL2978,,E5,oxqB_300_2,,E5,oxqB_300_2
+54,E6,Nagasin2nML2462,,BiopsyL2979,,E6,oxqB_500_2,,E6,oxqB_500_2
+55,E7,Nagasin2nML2463,,BiopsyL2980,,E7,oxqB_600_2,,E7,oxqB_600_2
+56,E8,Nagasin2nML2464,,BiopsyL2981,,E8,oxqB_800_2,,E8,oxqB_800_2
+57,E9,Nagasin2nML2465,,BiopsyL2982,,E9,oxqB_300_3,,E9,oxqB_300_3
+58,E10,Nagasin2nML2466,,BiopsyL2983,,E10,oxqB_500_3,,E10,oxqB_500_3
+59,E11,Nagasin2nML2467,,rpoB_300_1,,E11,oxqB_600_3,,E11,oxqB_600_3
+60,E12,Nagasin2nML2468,,rpoB_300_2,,E12,Ladder,,E12,oxqB_800_3
+61,F1,Nagasin2nML2469,,rpoB_300_3,,F1,blaACT_300_1,,F1,blaACT_300_1
+62,F2,Nagasin2nML2470,,rpoB_500_1,,F2,blaACT_500_1,,F2,blaACT_500_1
+63,F3,Nagasin2nML2471,,rpoB_500_2,,F3,blaACT_600_1,,F3,blaACT_600_1
+64,F4,Nagasin2nML2472,,rpoB_500_3,,F4,blaACT_800_1,,F4,blaACT_800_1
+65,F5,Nagasin2nML2473,,rpoB_600_1,,F5,blaACT_300_2,,F5,blaACT_300_2
+66,F6,Nagasin2nML2474,,rpoB_600_2,,F6,blaACT_500_2,,F6,blaACT_500_2
+67,F7,Nagasin2nML2475,,rpoB_600_3,,F7,blaACT_600_2,,F7,blaACT_600_2
+68,F8,Nagasin2nML2476,,rpoB_800_1,,F8,blaACT_800_2,,F8,blaACT_800_2
+69,F9,Nagasin2nML2477,,rpoB_800_2,,F9,blaACT_300_3,,F9,blaACT_300_3
+70,F10,Nagasin2nML2478,,rpoB_800_3,,F10,blaACT_500_3,,F10,blaACT_500_3
+71,F11,Nagasin2nML2479,,secA_300_1,,F11,blaACT_600_3,,F11,blaACT_600_3
+72,F12,Nagasin2nML2480,,secA_300_2,,F12,Ladder,,F12,blaACT_800_3
+73,G1,Nagasin2nML2512,,secA_300_3,,G1,rpoB_NTC_1,,G1,rpoB_NTC_1
+74,G2,Nagasin2nML2513,,secA_500_1,,G2,rpoB_NTC_2,,G2,rpoB_NTC_2
+75,G3,Nagasin2nML2514,,secA_500_2,,G3,rpoB_NTC_3,,G3,rpoB_NTC_3
+76,G4,Nagasin2nML2515,,secA_500_3,,G4,secA_NTC_1,,G4,secA_NTC_1
+77,G5,Nagasin2nML2516,,secA_600_1,,G5,secA_NTC_2,,G5,secA_NTC_2
+78,G6,Nagasin2nML2517,,secA_600_2,,G6,secA_NTC_3,,G6,secA_NTC_3
+79,G7,Nagasin2nML2540,,secA_600_3,,G7,oxqA_NTC_1,,G7,oxqA_NTC_1
+80,G8,Nagasin2nML2541,,secA_800_1,,G8,oxqA_NTC_2,,G8,oxqA_NTC_2
+81,G9,Nagasin2nML2542,,secA_800_2,,G9,oxqA_NTC_3,,G9,oxqA_NTC_3
+82,G10,Nagasin2nML2543,,secA_800_3,,G10,oxqB_NTC_1,,G10,oxqB_NTC_1
+83,G11,Nagasin2nML2544,,oxqA_300_1,,G11,oxqB_NTC_2,,G11,oxqB_NTC_2
+84,G12,Nagasin2nML2545,,oxqA_300_2,,G12,Ladder,,G12,oxqB_NTC_3
+85,H1,Nagasin2nML2537,,oxqA_300_3,,H1,blaACT_NTC_1,,H1,blaACT_NTC_1
+86,H2,Nagasin2nML2538,,oxqA_500_1,,H2,blaACT_NTC_2,,H2,blaACT_NTC_2
+87,H3,Nagasin2nML2539,,oxqA_500_2,,H3,blaACT_NTC_3,,H3,blaACT_NTC_3
+88,H4,NagasinPCRL2518,,oxqA_500_3,,H4,rpoB_800_3,,H4,oxqA_600_3
+89,H5,NagasinPCRL2519,,oxqA_600_1,,H5,secA_800_3,,H5,oxqA_800_3
+90,H6,NagasinPCRL2520,,oxqA_600_2,,H6,oxqA_600_3,,H6,n
+91,H7,NagasinPCRL2521,,oxqA_600_3,,H7,oxqA_800_3,,H7,n
+92,H8,NagasinPCRL2522,,oxqA_800_1,,H8,oxqB_800_3,,H8,n
+93,H9,NagasinPooledlibraryNOTclean,,oxqA_800_2,,H9,blaACT_800_3,,H9,n
+94,H10,NagasinPooledlibraryClean,,oxqA_800_3,,H10,oxqB_NTC_3,,H10,n
+95,H11,BLANK,,Blank,,H11,Blank,,H11,Blank
+96,H12,LADDER,,Ladder,,H12,Ladder,,H12,Ladder
+,,,,,,,Diagnostik,,,Research
