@@ -48,6 +48,12 @@ def get_qubit_genomics(genomic):
             return machine["api_config"][genomic]
     return None
 
+def get_fa_qc(qc):
+    for machine in CONFIG_PATH["machines"]:
+        if machine["display_name"] == "fragmentanalyzer":
+            return machine["api_config"][qc]
+    return None
+
 def get_project_id(session, name):
     response = session.get(f"{API_BASE_URL}/api/access-rights/projects", headers=get_headers())
     handle_get_project_id_responses(response)

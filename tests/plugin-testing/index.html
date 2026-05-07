@@ -272,11 +272,13 @@
 <!--
 This Code works in DiData Plugin, it displays the selected entities on the plugin
 
+---------------------
 Template part
+---------------------
 <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 24px; color: #333;">
   <div style="display: flex; gap: 16px; align-items: flex-start; max-width: 1300px; margin: 0 auto;">
 
-    Plate
+    -- Plate Section --
     <div style="flex: 3; min-width: 0;">
       <div style="display: grid; grid-template-columns: 24px repeat(12, 1fr); grid-template-rows: 24px repeat(8, 1fr); gap: 4px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; padding: 12px;">
         <div></div>
@@ -294,7 +296,6 @@ Template part
             @dragstart="onDragStart($event, row+col)"
             @dragend="onDragEnd($event)"
             @dragover.prevent="onDragOver($event, row+col)"
-            @dragleave="onDragLeave($event)"
             @drop="onDrop($event, row+col)"
             :style="wellStyle(row+col)"
             style="border-radius:50%; border:1.5px solid rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:600; color:white; aspect-ratio:1; user-select:none; cursor:pointer; transition: all 0.1s ease;"
@@ -305,11 +306,14 @@ Template part
       </div>
     </div>
 
-    Sidebar
+    -- Sidebar Section --
     <div style="flex: 1; background: #f9f9f9; border: 1px solid #ddd; border-radius: 10px; display: flex; flex-direction: column; max-height: 657px;">
-      <div style="padding: 10px 12px; font-size: 11px; font-weight: 700; color: #777; text-transform: uppercase; border-bottom: 1px solid #ddd;">
-        Well contents
+      <div style="padding: 12px; border-bottom: 1px solid #ddd;">
+        <button @click="downloadFiles" style="width: 100%; padding: 8px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: 600;">
+          Export Templates
+        </button>
       </div>
+
       <div style="overflow-y: auto; flex: 1;">
         <div v-for="r in rows" :key="'sb-row-'+r">
           <div
@@ -325,7 +329,7 @@ Template part
             <input
               v-if="getWell(r+c).type === 'sample'"
               :value="sampleNames[r+c]"
-              @input="e => updateSampleName(r+c, e.target.value)"
+              @input="function(e) { updateSampleName(r+c, e.target.value) }"
               @click.stop
               placeholder="Name..."
               style="flex:1; border:none; padding:2px 4px; font-size:11px; background:transparent; outline:none;"
@@ -335,14 +339,13 @@ Template part
               {{ getWell(r+c).type === 'empty' ? '—' : capitalize(getWell(r+c).type) }}
             </span>
 
-            Toggle Container
             <div v-if="getWell(r+c).type !== 'empty' && getWell(r+c).type !== 'sample'" 
                  style="margin-left:auto; width:26px; height:14px; position:relative;" 
                  @click.stop>
               <input 
                 type="checkbox" 
                 :checked="getWell(r+c).active" 
-                @change="e => toggleWell(r+c, e.target.checked)" 
+                @change="function(e) { toggleWell(r+c, e.target.checked) }" 
                 style="position:absolute; inset:0; opacity:0; cursor:pointer; z-index:5; margin:0;" 
               />
               <span :style="{ position:'absolute', inset:0, backgroundColor: getWell(r+c).active ? '#4CAF50' : '#ccc', borderRadius:'14px', transition:'.2s', pointerEvents:'none' }">
@@ -353,133 +356,168 @@ Template part
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
-
+---------------------
 JavaScript part
+---------------------
 {
-  data() {
+  data: function() {
     return {
       rows: ['A','B','C','D','E','F','G','H'],
       cols: [1,2,3,4,5,6,7,8,9,10,11,12],
       wellState: {},
       sampleNames: {},
       selectedWell: null,
-      draggingId: null,
-    }
+      draggingId: null
+    };
   },
 
-  computed: {
-    selectedEntities() {
-      return this.metaData?.entities || [];
+  mounted: function() {
+    var initialEntities = [];
+    if (this.metaData && this.metaData.entities) {
+      initialEntities = this.metaData.entities;
     }
-  },
-
-  mounted() {
-    this.initPlate(this.selectedEntities);
-  },
-
-  watch: {
-    selectedEntities: {
-      immediate: true,
-      handler(entities) {
-        this.initPlate(entities || []);
-      }
-    }
+    this.initPlate(initialEntities);
   },
 
   methods: {
-    initPlate(entities = []) {
-      const BLANKS  = ['D11','H11'];
-      const LADDERS = ['D12','H12'];
-      const skipIds = [...BLANKS, ...LADDERS];
-      const state = {};
-      const names = {};
+    initPlate: function(entities) {
+      var BLANKS = ['D11','H11'];
+      var LADDERS = ['D12','H12'];
+      var state = {};
+      var names = {};
+      var self = this;
 
-      this.rows.forEach(r => {
-        this.cols.forEach(c => {
-          const id = `${r}${c}`;
+      this.rows.forEach(function(r) {
+        self.cols.forEach(function(c) {
+          var id = r + c;
           names[id] = '';
-          if (BLANKS.includes(id))       state[id] = { type: 'blank',  active: true };
-          else if (LADDERS.includes(id)) state[id] = { type: 'ladder', active: true };
-          else                           state[id] = { type: 'empty',  active: true };
+          if (BLANKS.indexOf(id) !== -1) {
+            state[id] = { type: 'blank', active: true };
+          } else if (LADDERS.indexOf(id) !== -1) {
+            state[id] = { type: 'ladder', active: true };
+          } else {
+            state[id] = { type: 'empty', active: true };
+          }
         });
       });
 
-      const availableWells = [];
-      this.rows.forEach(r => {
-        this.cols.forEach(c => {
-          const id = `${r}${c}`;
-          if (!skipIds.includes(id)) availableWells.push(id);
+      var availableWells = [];
+      this.rows.forEach(function(r) {
+        self.cols.forEach(function(c) {
+          var id = r + c;
+          if (BLANKS.indexOf(id) === -1 && LADDERS.indexOf(id) === -1) {
+            availableWells.push(id);
+          }
         });
       });
 
-      entities.forEach((entity, i) => {
-        if (i < availableWells.length) {
-          const id = availableWells[i];
-          state[id] = { type: 'sample', active: true };
-          names[id] = entity.Sample__Id || entity.id || `Sample_${i+1}`;
-        }
-      });
+      if (entities && entities.length > 0) {
+        entities.forEach(function(entity, i) {
+          if (i < availableWells.length) {
+            var id = availableWells[i];
+            state[id] = { type: 'sample', active: true };
+            names[id] = entity.Sample__Id || entity.id || ('Sample_' + (i + 1));
+          }
+        });
+      }
 
       this.wellState = state;
       this.sampleNames = names;
     },
 
-    getWell(id) {
+    getWell: function(id) {
       return this.wellState[id] || { type: 'empty', active: true };
     },
 
-    selectWell(id) {
+    selectWell: function(id) {
       this.selectedWell = id;
     },
 
-    toggleWell(id, val) {
-      // Reverting to your working logic
+    toggleWell: function(id, val) {
       if (this.wellState[id]) {
         this.wellState[id].active = val;
-        // Force refresh by re-assigning the object reference
         this.wellState = Object.assign({}, this.wellState);
       }
     },
 
-    updateSampleName(id, val) {
+    updateSampleName: function(id, val) {
       this.sampleNames[id] = val;
       this.sampleNames = Object.assign({}, this.sampleNames);
     },
 
-    capitalize(str) {
-      return str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
+    capitalize: function(str) {
+      if (!str) return '';
+      return str.charAt(0).toUpperCase() + str.slice(1);
     },
 
-    wellStyle(id) {
-      const w = this.getWell(id);
-      const colors = { sample: '#4CAF50', empty: '#4a90c4', blank: '#e05a4e', ladder: '#7c6fd4' };
-      let bg = w.active ? (colors[w.type] || '#4a90c4') : '#cbd5e0';
-      
+    wellStyle: function(id) {
+      var w = this.getWell(id);
+      var colors = { sample: '#4CAF50', empty: '#4a90c4', blank: '#e05a4e', ladder: '#7c6fd4' };
+      var bg = w.active ? (colors[w.type] || '#4a90c4') : '#cbd5e0';
       return {
         backgroundColor: bg,
         outline: this.selectedWell === id ? '2.5px solid #333' : 'none',
-        outlineOffset: '1.5px',
+        outlineOffset: '1.5px'
       };
     },
 
-    sidebarRowStyle(id) {
+    sidebarRowStyle: function(id) {
       return {
         background: this.selectedWell === id ? '#fff' : 'transparent',
-        boxShadow: this.selectedWell === id ? 'inset 3px 0 0 #333' : 'none',
+        boxShadow: this.selectedWell === id ? 'inset 3px 0 0 #333' : 'none'
       };
     },
 
-    dotColor(id) {
-      const w = this.getWell(id);
-      const colors = { sample: '#4CAF50', empty: '#4a90c4', blank: '#e05a4e', ladder: '#7c6fd4' };
+    dotColor: function(id) {
+      var w = this.getWell(id);
+      var colors = { sample: '#4CAF50', empty: '#4a90c4', blank: '#e05a4e', ladder: '#7c6fd4' };
       return w.active ? (colors[w.type] || '#ccc') : '#ccc';
     },
 
-    onDragStart(e, id) {
+    downloadFiles: function() {
+      var csvRows = [];
+      var txtRows = [];
+      var counter = 1;
+      var self = this;
+
+      this.rows.forEach(function(r) {
+        self.cols.forEach(function(c) {
+          var id = r + c;
+          var well = self.getWell(id);
+          var name = 'n';
+
+          if (well.type === 'sample') {
+            name = self.sampleNames[id] || 'n';
+          } else if (well.type === 'blank') {
+            name = 'BLANK';
+          } else if (well.type === 'ladder') {
+            name = 'LADDER';
+          }
+
+          var cleanName = name.replace(/,/g, '');
+          csvRows.push(counter + ',' + id + ',' + cleanName);
+          txtRows.push(cleanName);
+          counter++;
+        });
+      });
+
+      self.triggerDownload(csvRows.join('\n'), 'Sample Names Template.csv', 'text/csv');
+      self.triggerDownload(txtRows.join('\n'), 'FA Sample Names Template.txt', 'text/plain');
+    },
+
+    triggerDownload: function(content, filename, type) {
+      var encoded = encodeURIComponent(content);
+      var dataUri = 'data:' + type + ';charset=utf-8,' + encoded;
+      var link = document.createElement('a');
+      link.setAttribute('href', dataUri);
+      link.setAttribute('download', filename);
+      link.click();
+    },
+
+    onDragStart: function(e, id) {
       if (this.getWell(id).type !== 'sample') {
         e.preventDefault();
         return;
@@ -487,31 +525,27 @@ JavaScript part
       this.draggingId = id;
     },
 
-    onDragEnd() {
+    onDragEnd: function(e) {
       this.draggingId = null;
     },
 
-    onDragOver(e, id) {
-      // Only allow dropping on empty wells
+    onDragOver: function(e, id) {
       if (this.getWell(id).type === 'empty') {
-        e.dataTransfer.dropEffect = 'move';
+        e.preventDefault();
       }
     },
 
-    onDrop(e, targetId) {
-      const sourceId = this.draggingId;
-      if (!sourceId || sourceId === targetId) return;
-      if (this.getWell(targetId).type !== 'empty') return;
+    onDrop: function(e, targetId) {
+      var sourceId = this.draggingId;
+      if (!sourceId || sourceId === targetId || this.getWell(targetId).type !== 'empty') {
+        return;
+      }
 
-      // 1. Set the target well to be a sample
       this.wellState[targetId] = { type: 'sample', active: true };
       this.sampleNames[targetId] = this.sampleNames[sourceId];
-
-      // 2. Clear the old well
       this.wellState[sourceId] = { type: 'empty', active: true };
       this.sampleNames[sourceId] = '';
 
-      // 3. Force UI refresh
       this.wellState = Object.assign({}, this.wellState);
       this.sampleNames = Object.assign({}, this.sampleNames);
       this.draggingId = null;

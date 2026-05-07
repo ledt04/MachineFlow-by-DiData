@@ -38,8 +38,8 @@
                 "file_pattern": "*.csv"
             },
             "api_config": {
-                "pcr": "",
-                "lib": ""
+                "pcr": "Post PCR Visualization & Clean up",
+                "lib": "16S Library Visualization & 2nM"
             }
         }
     ],

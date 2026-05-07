@@ -2,7 +2,7 @@ import os
 import json
 from pathlib import Path
 from src.mashines.qubit.api_manager import get_state_id, get_entities
-from src.mashines.qubit.csv_manager import load_csv
+from src.utils.csv_manager import load_csv
 from src.mashines.qubit.sample_classifier import sample_classifier, group_samples_by_id
 from src.config.settings import get_qubit_genomics, get_workflow_id_by_name, set_workflow_id, get_local_directory, get_qubit_id, get_workflow_id
 from src.mashines.qubit.sample_uploader import upload_dna, upload_lib, upload_pcr
