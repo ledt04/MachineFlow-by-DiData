@@ -110,6 +110,12 @@ def get_target_group():
 def get_state_id_by_name(name):
     return CONFIG_PATH["didata"]["state_id"].get(name)
 
+def get_state_id_by_id(id):
+    for name, state_id in CONFIG_PATH["didata"]["state_id"].items():
+        if state_id == id:
+            return name
+    return None
+
 def delete_file(path):
     try:
         os.remove(path)

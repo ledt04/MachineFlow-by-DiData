@@ -32,6 +32,15 @@ class MaschineHandler(FileSystemEventHandler):
             elif self.machine_type == "fragmentanalyzer":
                 fragment_main(session)
                 print("Fragment Analyzer processing completed.")
+                
+            # Delete the file after successful processing
+            if file_path.exists():
+                file_path.unlink()
+                print(f"Successfully deleted: {file_path.name}")
+
+        except Exception as e:
+            print(f"Error processing {file_path.name}: {e}")
+
         finally:
             logout(session)
             
