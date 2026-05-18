@@ -48,10 +48,12 @@ def get_qubit_genomics(genomic):
             return machine["api_config"][genomic]
     return None
 
-def get_fa_qc(qc):
+def get_fa_qc_by_id(id):
     for machine in CONFIG_PATH["machines"]:
         if machine["display_name"] == "fragmentanalyzer":
-            return machine["api_config"][qc]
+            for qc_name, qc_id in machine["api_config"]["qc"].items():
+                if qc_id == id:
+                    return qc_name
     return None
 
 def get_project_id(session, name):
@@ -82,6 +84,12 @@ def get_workflow_id():
 
 def get_kit_name_dna_quantification_fc_number(name):
     return CONFIG_PATH["machines"][0]["kit_name_dna_quantification_fc"][name]
+
+def get_kit_name_post_pcr_visualization_number(name):
+    return CONFIG_PATH["machines"][1]["kit_name_post_pcr_visualization"][name]
+
+def get_method_number(name):
+    return CONFIG_PATH["machines"][1]["method"][name]
 
 import json
 

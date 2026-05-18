@@ -8,6 +8,7 @@ from src.config.settings import get_fa_qc, get_workflow_id_by_name, set_workflow
 from src.mashines.fragmentanalyzer.data_extracter import extract_sample_peaks
 from src.mashines.fragmentanalyzer.sample_classifier import sample_classifier
 from src.mashines.fragmentanalyzer.sample_uploader import upload_fa
+from src.utils.error_handling import handle_upload_responses
 
 def main(session):
     load_dotenv()
@@ -29,12 +30,11 @@ def main(session):
     print(f"Detected QC type: {get_state_id_by_id(qc)}")
     
     # Data Upload to DiData
-    upload_fa(session, sample_peaks, qc)
+    response = upload_fa(session, sample_peaks, qc)
     
-    # debug
-    # print(json.dumps(samples, indent=4))
-    # print("\n")
-    # print(sample_names)
+    # handle upload response
+    handle_upload_responses(response, get_state_id_by_id(qc))
+    return
     
     
 

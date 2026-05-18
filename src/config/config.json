@@ -40,6 +40,12 @@
             "api_config": {
                 "pcr": "Post PCR Visualization & Clean up",
                 "lib": "16S Library Visualization & 2nM"
+            },
+            "kit_name_post_pcr_visualization": {
+                "HS NGS Fragment Kit (1-6000bp)": 563
+            },
+            "method": {
+                "FA": 522
             }
         }
     ],
