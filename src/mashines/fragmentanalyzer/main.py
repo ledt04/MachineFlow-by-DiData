@@ -7,7 +7,7 @@ from src.mashines.fragmentanalyzer.api_manager import get_state_id, get_entities
 from src.config.settings import get_fa_qc, get_workflow_id_by_name, set_workflow_id, get_local_directory, get_fragmentanalyzer_id, get_workflow_id, get_state_id_by_id
 from src.mashines.fragmentanalyzer.data_extracter import extract_sample_peaks
 from src.mashines.fragmentanalyzer.sample_classifier import sample_classifier
-from src.mashines.fragmentanalyzer.sample_filter import need_human_validation
+from src.mashines.fragmentanalyzer.sample_uploader import upload_fa
 
 def main(session):
     load_dotenv()
@@ -25,13 +25,11 @@ def main(session):
     sample_peaks = extract_sample_peaks(csv_df)
     
     qc = sample_classifier(sample_peaks.keys(), didata_sample_names)
+    # missing error handling for no matching sample names
     print(f"Detected QC type: {get_state_id_by_id(qc)}")
     
-    # Data Analysis
-    validation_needed = need_human_validation(sample_peaks)
-    
     # Data Upload to DiData
-    
+    upload_fa(session, sample_peaks, qc)
     
     # debug
     # print(json.dumps(samples, indent=4))
