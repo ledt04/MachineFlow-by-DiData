@@ -1,17 +1,16 @@
 import os
+from pathlib import Path
 import requests
 from dotenv import load_dotenv
 from src.config.settings import API_BASE_URL, get_project_id
 from src.utils.error_handling import handle_login_responses, handle_logout_responses
 from src.utils.auth import set_auth, clear_auth, get_headers
 
-
 def login():
-    load_dotenv()
     session = requests.Session()
     response = session.post(f"{API_BASE_URL}/api/login", json={
-        "username": os.getenv("USERNAME"),
-        "password": os.getenv("PASSWORD")
+        "username": os.getenv("DIDATA_USERNAME"),
+        "password": os.getenv("DIDATA_PASSWORD")
     })
     handle_login_responses(response)
     token = response.json().get("token")

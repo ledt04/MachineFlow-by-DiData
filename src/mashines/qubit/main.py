@@ -46,7 +46,7 @@ def main(session):
 
     # print(json.dumps(group_samples_by_id(didata_sample_names, sample_state_id), indent=4))
     grouped_didata_samples = group_samples_by_id(didata_sample_names, sample_state_id)
-    
+
     match genomic:
         case _ if genomic == genomics[0]:
             response = upload_dna(session, csv_df, grouped_didata_samples)

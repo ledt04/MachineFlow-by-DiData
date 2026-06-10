@@ -20,7 +20,7 @@ def find_data_group(csv, didata):
     return target_group
 
 def remove_standard_from_csv(csv):
-    std_re = re.compile(r"^(?:\d*)(std|std|sntdrd|stndrd|stand|stad|standard)[_\-\s]*(\d*)$", re.IGNORECASE)
+    std_re = re.compile(r"^(?:\d*)(std|stnd|sntdrd|stndrd|stand|stad|standard)[_\-\s]*(\d*)$", re.IGNORECASE)
     
     # remove standard from df
     for i, sample in enumerate(csv["Sample Name"]):
