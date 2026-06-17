@@ -62,7 +62,7 @@ headers = {
         "Didata-Project-Id": "1"
 }
 
-choice = 7
+choice = 2
 
 if choice == 1:
     # Upload Dummy Data

@@ -1,0 +1,6 @@
+Run ID,Test Date,Assay Name,Sample Name,Original Sample Conc.,Original sample conc. units,Qubit Tube Conc.,Qubit tube conc. units,Sample Volume (uL),Dilution Factor,Extended Low Range,Core Range,Extended High Range,Excitation,Std 1 RFU,Std 2 RFU,Std 3 RFU,Sample RFU,Last Read Standards,Reagent Lot#,Plate Barcode,Well,Sample ID,Tags,Calibrated Tubes,Software Version,Selected Samples
+170626-134516,17/06/2026 01:45:17 PM,1X dsDNA HS,TEST-001D1,0.117,ng/uL,1.17,ng/mL,2,100,0.05-0.1,0.1-50.0,50.0-60.0,BLUE,2.72481549672,1155.6063584,,0.158,16/06/2026 01:02:47 PM,,,,,,8,1.9.0,5
+170626-134516,17/06/2026 01:45:17 PM,1X dsDNA HS,S2,0.106,ng/uL,1.06,ng/mL,2,100,0.05-0.1,0.1-50.0,50.0-60.0,BLUE,2.3129247821,1096.72700138,,0.0949,16/06/2026 01:02:47 PM,,,,,,8,1.9.0,5
+170626-134516,17/06/2026 01:45:17 PM,1X dsDNA HS,S3,0.111,ng/uL,1.11,ng/mL,2,100,0.05-0.1,0.1-50.0,50.0-60.0,BLUE,2.3129247821,1052.86045513,,0.0949,16/06/2026 01:02:47 PM,,,,,,8,1.9.0,5
+170626-134516,17/06/2026 01:45:17 PM,1X dsDNA HS,Std2,0.116,ng/uL,1.16,ng/mL,2,100,0.05-0.1,0.1-50.0,50.0-60.0,BLUE,2.37629258435,1014.25155991,,0.126,16/06/2026 01:02:47 PM,,,,,,8,1.9.0,5
+170626-134516,17/06/2026 01:45:17 PM,1X dsDNA HS,Stad2,0.1,ng/uL,1,ng/mL,2,100,0.05-0.1,0.1-50.0,50.0-60.0,BLUE,1.80598236411,946.63056624,,0,16/06/2026 01:02:47 PM,,,,,,8,1.9.0,5

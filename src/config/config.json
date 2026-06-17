@@ -4,7 +4,8 @@
             "machine_id": 0,
             "display_name": "qubit",
             "source_config": {
-                "local_directory": "tests\\test-qubit-data",
+                "local_directory": "E:\\QubitFlex",
+                "backup_directory": "E:\\16S Data Backup\\QubitFlex Backup",
                 "file_pattern": "*.csv"
             },
             "api_config": {
@@ -17,24 +18,14 @@
                 "1X dsDNA BR": 558,
                 "1X dsDNA HS": 557
             },
-            "temporary_groups": [
-                {
-                    "TEST-001D1": 53004,
-                    "TEST-002D1": 53005,
-                    "TEST-003D1": 53006
-                },
-                {
-                    "TESTNEG-001D1": 53014,
-                    "TESTNEG-002D1": 53015,
-                    "TESTNEG-003D1": 53016
-                }
-            ]
+            "temporary_groups": []
         },
         {
             "machine_id": 1,
             "display_name": "fragmentanalyzer",
             "source_config": {
-                "local_directory": "tests\\test-fragmentanalyzer-data",
+                "local_directory": "E:\\Fragment analyser\\FA Ouput",
+                "backup_directory": "E:\\16S Data Backup\\Fragment analyser Backup",
                 "file_pattern": "*.csv"
             },
             "api_config": {
