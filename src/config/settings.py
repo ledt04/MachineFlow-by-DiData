@@ -136,3 +136,9 @@ def delete_file(path):
         print(f"File not found, could not delete: {path}")
     except Exception as e:
         print(f"Error deleting file {path}: {e}")
+        
+def get_backup_directory(machine_id):
+    for machine in CONFIG_PATH["machines"]:
+        if machine["machine_id"] == machine_id:
+            return machine["source_config"].get("backup_directory")
+    return None
