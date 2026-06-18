@@ -1,4 +1,4 @@
-# MashineFlow-by-DiData
+# MachineFlow-by-DiData
 
 Automated data extraction and API integration pipeline for laboratory instruments. Developed as part of a Bachelor's internship project at the University of Zurich (UZH).
 
