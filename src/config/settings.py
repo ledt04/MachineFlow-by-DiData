@@ -21,13 +21,10 @@ def load_CONFIG_PATH():
 CONFIG_PATH = load_CONFIG_PATH()
 
 def get_local_directory(machine_id):
-    project_root = Path(__file__).resolve().parents[2]
-
     for machine in CONFIG_PATH["machines"]:
         if machine["machine_id"] == machine_id:
-            qubit_directory = machine["source_config"]["local_directory"]
-            full_directory = os.path.join(project_root, qubit_directory)
-            return full_directory
+            # Gibt direkt den Pfad aus der config.json zurück, ohne project_root!
+            return machine["source_config"]["local_directory"]
     return None
 
 def get_qubit_id():

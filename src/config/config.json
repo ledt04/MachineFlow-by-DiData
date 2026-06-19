@@ -4,8 +4,8 @@
             "machine_id": 0,
             "display_name": "qubit",
             "source_config": {
-                "local_directory": "E:\\QubitFlex",
-                "backup_directory": "E:\\16S Data Backup\\QubitFlex Backup",
+                "local_directory": "\\\\idnas32.uzh.ch\\G_IMM_Egli$\\QubitFlex",
+                "backup_directory": "\\\\idnas32.uzh.ch\\G_IMM_Egli$\\16S Data Backup\\QubitFlex Backup",
                 "file_pattern": "*.csv"
             },
             "api_config": {
@@ -24,8 +24,8 @@
             "machine_id": 1,
             "display_name": "fragmentanalyzer",
             "source_config": {
-                "local_directory": "E:\\Fragment analyser\\FA Ouput",
-                "backup_directory": "E:\\16S Data Backup\\Fragment analyser Backup",
+                "local_directory": "\\\\idnas32.uzh.ch\\G_IMM_Egli$\\Fragment analyser\\FA Ouput",
+                "backup_directory": "\\\\idnas32.uzh.ch\\G_IMM_Egli$\\16S Data Backup\\Fragment analyser Backup",
                 "file_pattern": "*.csv"
             },
             "api_config": {

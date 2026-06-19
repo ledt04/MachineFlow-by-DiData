@@ -21,6 +21,10 @@ def main(session):
     # -> "16S Library Quantification"
     genomics = [get_qubit_genomics("dna"), get_qubit_genomics("pcr"), get_qubit_genomics("lib")]
     state_ids = get_state_id(session, genomics, get_workflow_id())
+    
+    print(f"Workflow ID: {workflow_id}")
+    print(f"State IDs: {state_ids}")
+    
     didata_sample_names = get_entities(session, state_ids.values())
     # load csv file
     csv_df = load_csv(Path(get_local_directory(get_qubit_id())))

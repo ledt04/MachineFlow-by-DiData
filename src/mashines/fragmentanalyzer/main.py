@@ -19,7 +19,8 @@ def main(session):
     state_ids = get_state_id(session, qcs, get_workflow_id())
     didata_sample_names = get_entities(session, state_ids.values())
     # print(json.dumps(didata_sample_names, indent=4))
-
+    print(f"Workflow ID: {workflow_id}")
+    print(f"State IDs: {state_ids}")
     # Load Csv File
     csv_df = load_csv(Path(get_local_directory(get_fragmentanalyzer_id())))
     sample_peaks = extract_sample_peaks(csv_df)
