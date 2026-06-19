@@ -1,0 +1,29 @@
+MashineFlow-by-DiData/
+├── .env
+├── readme.md
+├── requirements.txt
+├── tests/
+└── src/
+    ├── config/
+    │   ├── config.json
+    │   └── settings.py
+    ├── mashines/
+    │   ├── fragmentanalyzer/
+    │   │   ├── api_manager.py
+    │   │   ├── data_exracter.py
+    │   │   ├── main.py
+    │   │   ├── sample_classifier.py
+    │   │   ├── sample_filer.py
+    │   │   └── sample_uploader.py
+    │   └── qubit/
+    │       ├── api_manager.py
+    │       ├── main.py
+    │       ├── sample_classifier.py
+    │       └── sample_uploader.py
+    ├── mastercontroller/
+    │   └── main.py
+    └── utils/
+        ├── auth.py
+        ├── csv_manager.py
+        ├── error_handling.py
+        └── logger.pyr
